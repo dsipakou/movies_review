@@ -1,3 +1,11 @@
+<div>
+<% ('a'..'z').to_a.each do |char| %>
+<strong><%= link_to char %></strong>
+<% end %><br>
+<% 'а,б,в,г,д,е,ж,з,и,й,к,л,м,н,о,п,р,с,т,у,ф,х,ц,ч,ш,щ,э,ю,я'.split(',').each do |char| %>
+<strong><%= link_to char %></strong>
+<% end %>
+</div>
 <div class="movie-left-container right-border">
 	<table class="index-page-table">
 		<% @movies.each do |movie| %>
