@@ -4,10 +4,12 @@ class ReviewsController < ApplicationController
 
 
 	def index
-		
+		authorize! :index, @review
+
 	end
 
 	def show
+		authorize! :show, @review
 		@user_name = User.find(@review.user_id).nickname
 	end
 

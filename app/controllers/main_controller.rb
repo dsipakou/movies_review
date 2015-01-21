@@ -3,7 +3,7 @@ class MainController < ApplicationController
 	layout "main"
 
   def index
+  	authorize! :index, @movies
   	@movies = Movie.all;
-  	#authorize! :index, @movies
   end
 end

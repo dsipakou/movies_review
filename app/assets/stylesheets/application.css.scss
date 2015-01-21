@@ -37,6 +37,10 @@ h2 {
 	font-size: 16px;
 }
 
+table {
+	width: 100%;
+}
+
 .h2-background {
 	background-image: url(data:image/jpeg;base64,%2F9j%2F4AAQSkZJRgABAQEASABIAAD%2F2wBDAAYEBAQFBAYFBQYJBgUGCQsIBgYICwwKCgsKCgwQDAwMDAwMEAwODxAPDgwTExQUExMcGxsbHCAgICAgICAgICD%2F2wBDAQcHBw0MDRgQEBgaFREVGiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD%2FwAARCAAcAAUDAREAAhEBAxEB%2F8QAFgABAQEAAAAAAAAAAAAAAAAAAwUI%2F8QAHxAAAQQCAgMAAAAAAAAAAAAAAQACAxEEIQUTEkFh%2F8QAFwEBAQEBAAAAAAAAAAAAAAAAAgEABP%2FEABYRAQEBAAAAAAAAAAAAAAAAAAARAf%2FaAAwDAQACEQMRAD8A0lJ5yOLnHa59I3WlENopMl8rnz4GR1Q05hFgP9fBVaTiP%2F%2FZ);
 	background-color: transparent;
@@ -114,6 +118,10 @@ a {
 
 .right {
 	float: right;
+}
+
+.right-border {
+	border-right: 1px solid #e0e5e9;
 }
 
 .col {
@@ -248,6 +256,45 @@ a {
 	margin-top: 15px;
 	margin-left: 5px;
 	min-height: 250px;
+}
+
+.index-page-table {
+	border-spacing: 2px;
+	border-color: gray;
+
+	.index-page-td-with-border {
+		border-top: 1px solid #e8e8e8;
+		padding: 5px;
+	}
+}
+
+.index-page-movie-desc {
+	float: left;
+	width: 456px;	
+
+	.index-page-image {
+		float: left;
+		margin-right: 10px;
+	}
+
+	.index-page-movie-title {
+		float: left;
+		width: 390px;
+
+		a {
+			font-size: 16px;
+			color: #666600;
+		}
+	}
+
+	.index-page-movie-orig-title {
+		font-size: 12px;
+	}
+
+	img {
+		max-height: 75px;
+		width: 50px;
+	}
 }
 
 .movie-left-container {

@@ -1,6 +1,8 @@
 class LogoutController < ApplicationController
-	authorize_resource
 	
   def index
+  	session[:userid] = nil
+  	session[:username] = nil
+  	redirect_to(login_path)
   end
 end

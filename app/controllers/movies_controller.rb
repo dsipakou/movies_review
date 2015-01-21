@@ -10,11 +10,13 @@ class MoviesController < ApplicationController
   # GET /movies.json
   def index
     @movies = Movie.all
+    authorize! :index, @movies
   end
 
   # GET /movies/1
   # GET /movies/1.json
   def show
+    authorize! :show, @movie
     @movie = Movie.find(params[:id]) 
     @review = Review.new(:movie_id => @movie.id, :user_id => session[:userid])
     @user_name = User.find(@review.user_id).nickname

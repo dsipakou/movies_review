@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'login', to: "login#index", as: :login
   post 'login', to: "login#attempt_login"
 
-  get 'logout/index', as: :logout
+  get 'logout', to: "logout#index", as: :logout
 
   match 'movies/:id', to: "movies#show", via: [:get, :post]
 

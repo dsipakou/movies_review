@@ -1,9 +1,18 @@
-<p><%= link_to 'Добавить фильм', new_movie_path %></p>
-<p><%= link_to 'Уйти отсюда', logout_path %></p>
-<% @movies.each do |movie| %>
-	<div style="border: 1px solid;">
-		<div><%= link_to movie.title, movie_path(movie) %> </div>
-		<div><%= movie.orig_title %></div>
-		<div><%= movie.year %></div>
-	</div>
-<% end %>
+<div class="movie-left-container right-border">
+	<table class="index-page-table">
+		<% @movies.each do |movie| %>
+		<tr>
+			<td class="index-page-td-with-border">
+				<div class="index-page-movie-desc">
+					<div class="index-page-image"><%= image_tag ("posters/" + movie.image) unless movie.image.empty? %></div>
+					<div class="index-page-movie-title"><%= link_to movie.title, movie_path(movie) %> </div>
+					<div class="index-page-movie-orig-title"><%= movie.orig_title %> (<%= movie.year %>)</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<% end %>
+	</table>
+</div>
