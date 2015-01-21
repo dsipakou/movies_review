@@ -1,22 +1,17 @@
-<h1>Привет, дружок!</h1>
 
-<div class="login">
-  <%= form_tag(controller: "login", action: "attempt_login") do %>
-  <table>
-    <tr>
-      <td><%= label_tag :nickname %></td>
-      <td><%= text_field_tag :nickname %></td>
-    </tr>
-    <tr>
-      <td><%= label_tag :password %></td>
-      <td><%= password_field_tag :password %></td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td><%= submit_tag("Log in") %></td>
-    </tr>
-  </table>
-  <% end %>
+<div class="b-auth_container">
+  <div class="b-auth_form">
+    <div class="b-auth_form_bg"></div>
+    <span class="b-logo"><h1>Привет, дружок!</h1></span>
+    <%= form_tag(controller: "login", action: "attempt_login") do %>
+        <%= label_tag :nickname, nil, for: "username" %>
+        <%= text_field_tag :nickname, nil, id: "username", class: "b-text_input", autofocus: true %>
+        <%= label_tag :password %>
+        <%= password_field_tag :password, nil, id: "password", class: "b-text_input" %>
+        &nbsp;
+        <%= submit_tag("Log in") %>
+    <% end %>
+  </div>
+<%= link_to 'New User', new_user_path %>
 </div>
 
-<%= link_to 'New User', new_user_path %>
