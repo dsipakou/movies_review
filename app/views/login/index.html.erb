@@ -1,0 +1,22 @@
+<h1>Привет, дружок!</h1>
+
+<div class="login">
+  <%= form_tag(controller: "login", action: "attempt_login") do %>
+  <table>
+    <tr>
+      <td><%= label_tag :nickname %></td>
+      <td><%= text_field_tag :nickname %></td>
+    </tr>
+    <tr>
+      <td><%= label_tag :password %></td>
+      <td><%= password_field_tag :password %></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><%= submit_tag("Log in") %></td>
+    </tr>
+  </table>
+  <% end %>
+</div>
+
+<%= link_to 'New User', new_user_path %>

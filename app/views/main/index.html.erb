@@ -1,0 +1,9 @@
+<p><%= link_to 'Добавить фильм', new_movie_path %></p>
+<p><%= link_to 'Уйти отсюда', logout_path %></p>
+<% @movies.each do |movie| %>
+	<div style="border: 1px solid;">
+		<div><%= link_to movie.title, movie_path(movie) %> </div>
+		<div><%= movie.orig_title %></div>
+		<div><%= movie.year %></div>
+	</div>
+<% end %>

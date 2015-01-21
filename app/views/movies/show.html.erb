@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @movie.title %>
+</p>
+
+<p>
+  <strong>Orig title:</strong>
+  <%= @movie.orig_title %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @movie.year %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @movie.link %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @movie.image %>
+</p>
+
+<p>
+
+  <strong>Review:</strong>
+  <%= render partial: "review/inner", collection: @movie.reviews %>
+  <% if @movie.reviews.where({user_id: session[:userid]}).size == 0 %>
+  <strong>Write review:</strong>
+  <%= render "review/form"  %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Back', movies_path %>

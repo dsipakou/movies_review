@@ -1,0 +1,11 @@
+<div>
+	<h3>Кто?</h3>
+
+	<%= User.find(inner.user_id).nickname %>
+	<br>
+	<h3>Что?</h3>
+	<%= inner.content %>
+	<% if inner.user_id == session[:userid] %>
+		<%= link_to "Delete", inner, method: :delete, data: { confirm: "Sure?"} %>
+	<% end %>
+</div>
