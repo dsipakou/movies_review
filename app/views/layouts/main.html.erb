@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MovieReview</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<header class="header">
+		<section class="header-content">
+			<ul class="header-user-nav header-nav">
+				<li><%= User.find(session[:userid]).nickname %></li>
+				<li><strong><%= link_to 'Уйти отсюда', logout_path %></strong></li>
+			</ul>
+			<div class="header-logo">PRIVET</div>
+			<ul class="header-site-nav header-nav">
+				<li><strong><%= link_to 'Добавить фильм', new_movie_path %></strong></li>
+			</ul>
+		</section>
+	</header>
+	
+	<div class="main-container">
+		<div class="main-container-float">
+			<%= yield %>
+		</div>
+	</div>
+
+
+</body>
+</html>

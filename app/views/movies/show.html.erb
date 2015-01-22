@@ -1,39 +1,51 @@
-<p id="notice"><%= notice %></p>
+<div class="movie-left-container">
+  <!-- <p id="notice"><%= notice %></p> -->
+  <div class="stacked"><%= link_to 'Хочу на главную!', index_path, class: "action-link" %></div>
+  <div class="movie-cover-image-container col">
+      <%= image_tag ("posters/" + @movie.image), class: "movie-cover-image" unless @movie.image.empty? %>
+  </div>
+  <div class="movie-main-content col last">
+    <h1 class="movie-title"><%= @movie.title %></h1>
+    <div class="stacked">
+      <% unless @movie.link.empty? %><%= link_to @movie.orig_title, @movie.link %>
+      <% else %><%= @movie.orig_title %>
+      <% end %>
+      (<%= @movie.year %>)
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div>
+    <%= link_to 'Редактировать кино', edit_movie_path(@movie), class: "action-link" %>
+    <%= link_to "Комментарии (#{@movie.comments.size})", comments_path(params[:id]), class: "action-link right" %>
+    <% if @movie.reviews.where({user_id: session[:userid]}).size == 0 %>
+    <h2 class="h2-container h2-background">Напишу-ка я отзыв</h2>
+    <%= render "review/form" %>
+    <% else %>
+    <h2 class="h2-container h2-background">Что я написал</h2>
+    <div><%= render partial: "review/inner", collection: @movie.reviews.where({user_id: session[:userid]}) %></div>
+    <% end %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @movie.title %>
-</p>
-
-<p>
-  <strong>Orig title:</strong>
-  <%= @movie.orig_title %>
-</p>
-
-<p>
-  <strong>Year:</strong>
-  <%= @movie.year %>
-</p>
-
-<p>
-  <strong>Link:</strong>
-  <%= @movie.link %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= @movie.image %>
-</p>
-
-<p>
-
-  <strong>Review:</strong>
-  <%= render partial: "review/inner", collection: @movie.reviews %>
-  <% if @movie.reviews.where({user_id: session[:userid]}).size == 0 %>
-  <strong>Write review:</strong>
-  <%= render "review/form"  %>
+    <% unless @movie.reviews.where.not(user_id: session[:userid]).size == 0 %>
+    <h2 class="h2-container h2-background">Что пишут другие</h2>
+    <div><%= render partial: "review/inner", collection: @movie.reviews.where.not(user_id: session[:userid]) %></div>
+    <% end %>
+  </div>
+</div>
+<div class="movie-right-container">
+  <h2 class="h2-container h2-background">Последний отзыв такой</h2>
+  <% unless @last_user_review.nil? %>
+  <strong><%= @last_user_review.nickname %></strong>
+  <%= @movie.reviews.last.content[0..70].gsub(/\s\w+\s*$/,'...') %>
+  <% else %>
+  <i>А отзывов-то и нет</i>
   <% end %>
-</p>
-
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
-<%= link_to 'Back', movies_path %>
+  <h2 class="h2-container h2-background">А вот последний комментарий</h2>
+  <% unless @movie.comments.last.nil? %>
+  <%= @movie.comments.last.content  %>
+    <footer>
+        Написал <%= User.find(@movie.comments.last.user_id).nickname %> <%= @movie.comments.last.updated_at.to_formatted_s(:short) %>
+    </footer>
+  <% else %>
+  <i>Никто не писал комментариев</i>
+  <% end %>
+</div>

@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
 	
 	has_secure_password
 	
-	has_many :reviews
+	has_many :reviews, :dependent => :destroy
+	has_many :comments, :dependent => :destroy
 
 	def admin?(username)
 		#self.username.to_sym == username

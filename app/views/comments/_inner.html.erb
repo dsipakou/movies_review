@@ -1,0 +1,12 @@
+<div>
+	<div class="comment-block">
+		<div class="comment-block-inner">
+			<div class="comment-body">
+				<%= inner.content %>
+			</div>
+			<footer>
+				Написал <%= User.find(inner.user_id).nickname %> <%= inner.updated_at.to_formatted_s(:short) %>
+			</footer>
+		</div>
+	</div>
+</div>

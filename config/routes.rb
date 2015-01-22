@@ -9,8 +9,12 @@ Rails.application.routes.draw do
 
   get 'logout/index', as: :logout
 
-  put 'movies/:id', to: "movies#show"
-  post 'movies/:id', to: "movies#show"
+  match 'movies/:id', to: "movies#show", via: [:get, :post]
+
+  controller :comments do
+    get 'movies/:movie_id/comments', to: "comments#show", as: :comments
+    post 'movies/:movie_id/comments', to: "comments#create"
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

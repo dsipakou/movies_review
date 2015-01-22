@@ -1,0 +1,39 @@
+<div class="main-container-float">
+  <div class="movie-left-container">
+    <!-- <p id="notice">
+    <%= notice %>
+    </p> -->
+    <div class="stacked"><%= link_to 'Вернуться к фильму', movie_path(params[:movie_id]), class: "action-link" %></div>
+    <div class="movie-cover-image-container col">
+        <%= image_tag ("posters/" + @movie.image), class: "movie-cover-image" %>
+    </div>
+    <div class="movie-main-content col last">
+      <h1 class="movie-title"><%= @movie.title %></h1>
+      <div class="stacked">
+        <% unless @movie.link.empty? %><%= link_to @movie.orig_title, @movie.link %>
+        <% else %><%= @movie.orig_title %>
+        <% end %>
+        (<%= @movie.year %>)
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="movie-right-container">
+    <h2 class="h2-container h2-background">Последний отзыв таков</h2>
+    <% unless @last_user_review.nil? %>
+    <strong><%= @last_user_review.nickname %></strong>
+    <%= @movie.reviews.last.content[0..70].gsub(/\s\w+\s*$/,'...') %>
+    <% else %>
+    <i>А отзывов-то и нет</i>
+    <% end %>
+  </div>
+</div>
+<div class="comment-main-container">
+  <header class="comment-header">Комментарии</header>
+  <% if @movie.comments.where({movie_id: params[:movie_id]}).size == 0 %>
+  <i>Здесь пусто. Будь первым!</i>
+  <% else %>
+  <div><%= render partial: "comments/inner", collection: @movie.comments.where({movie_id: params[:movie_id]}) %></div>
+  <% end %>
+  <%= render "comments/add_comment_form" %>
+</div>

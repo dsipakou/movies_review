@@ -2,10 +2,10 @@
 <div class="b-auth_container">
   <div class="b-auth_form">
     <div class="b-auth_form_bg"></div>
-    <span class="b-logo"><h1>Привет, дружок!</h1></span>
+    <span class="b-logo">Привет, дружок!</span>
     <%= form_tag(controller: "login", action: "attempt_login") do %>
-        <%= label_tag :nickname, nil, for: "username" %>
-        <%= text_field_tag :nickname, nil, id: "username", class: "b-text_input", autofocus: true %>
+        <%= label_tag :username, nil, for: "username" %>
+        <%= text_field_tag :username, nil, id: "username", class: "b-text_input", autofocus: true %>
         <%= label_tag :password %>
         <%= password_field_tag :password, nil, id: "password", class: "b-text_input" %>
         &nbsp;

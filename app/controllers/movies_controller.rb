@@ -1,5 +1,8 @@
+require 'file_ops'
+
 class MoviesController < ApplicationController
   
+  layout "main"
 
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
@@ -15,6 +18,7 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id]) 
     @review = Review.new(:movie_id => @movie.id, :user_id => session[:userid])
     @user_name = User.find(@review.user_id).nickname
+    @last_user_review = User.find(@movie.reviews.last.user_id) unless @movie.reviews.last.nil?
   end
 
   # GET /movies/new
@@ -29,8 +33,8 @@ class MoviesController < ApplicationController
   # POST /movies
   # POST /movies.json
   def create
+    find_movie_by_url
     @movie = Movie.new(movie_params)
-
     respond_to do |format|
       if @movie.save
         format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
@@ -45,6 +49,7 @@ class MoviesController < ApplicationController
   # PATCH/PUT /movies/1
   # PATCH/PUT /movies/1.json
   def update
+    find_movie_by_url
     respond_to do |format|
       if @movie.update(movie_params)
         format.html { redirect_to @movie, notice: 'Movie was successfully updated.' }
@@ -75,5 +80,14 @@ class MoviesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
       params.require(:movie).permit(:title, :orig_title, :year, :link, :image)
+    end
+
+    def find_movie_by_url
+      #if params[:url_upload_button] && !params[:url_upload_textbox].empty?
+      unless params[:url_upload_textbox].empty?
+        @file_ops = FileOps.new()
+        params[:movie][:image] = @file_ops.get_image_from_url(params[:url_upload_textbox])
+        @image_link = params[:movie][:image]
+      end  
     end
 end
