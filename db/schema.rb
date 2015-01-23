@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150122080912) do
   end
 
   create_table "movies", force: true do |t|
+    t.integer  "user_id"
     t.string   "title"
     t.string   "orig_title"
     t.string   "year"

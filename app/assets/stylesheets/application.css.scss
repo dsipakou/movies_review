@@ -120,6 +120,10 @@ a {
 	float: right;
 }
 
+.left {
+	float: left;
+}
+
 .right-border {
 	border-right: 1px solid #e0e5e9;
 }
@@ -330,7 +334,7 @@ a {
   	}
 }
 
-// Movie deatils page start
+// Movie details page start
 .movie-title {
 	margin-bottom: 0;
 	line-height: 1.1;
@@ -375,6 +379,15 @@ a {
 	width: 455px;
 	margin-right: 0px;
 
+}
+
+.movie-added-by-text {
+	color: #555555;
+	font-size: 80%;
+	font-style: italic;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 100%;
 }
 
 .new_movie, .edit_movie {

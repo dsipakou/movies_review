@@ -16,31 +16,27 @@
   </div>
   <div class="clear"></div>
   <div>
-    <%= link_to 'Редактировать кино', edit_movie_path(@movie), class: "action-link" %>
-    <%= link_to "Комментарии (#{@movie.comments.size})", comments_path(params[:id]), class: "action-link right" %>
-    <% if @movie.reviews.where({user_id: session[:userid]}).size == 0 %>
-    <h2 class="h2-container h2-background">Напишу-ка я отзыв</h2>
-    <%= render "review/form" %>
-    <% else %>
-    <h2 class="h2-container h2-background">Что я написал</h2>
-    <div><%= render partial: "review/inner", collection: @movie.reviews.where({user_id: session[:userid]}) %></div>
-    <% end %>
+    <div><%= link_to 'Редактировать кино', edit_movie_path(@movie), class: "action-link" %>
+    <%= link_to "Комментарии (#{@movie.comments.size})", comments_path(params[:id]), class: "action-link right" %></div>
+    <div class="movie-added-by-text left">Фильм любезно добавил <strong><%= User.find(@movie.user_id).nickname %></strong></div>
+    <div>
+      <% if @movie.reviews.where({user_id: session[:userid]}).size == 0 %>
+      <h2 class="h2-container h2-background">Напишу-ка я отзыв</h2>
+      <%= render "review/form" %>
+      <% else %>
+      <h2 class="h2-container h2-background">Что я написал</h2>
+      <div><%= render partial: "review/inner", collection: @movie.reviews.where({user_id: session[:userid]}) %></div>
+      <% end %>
 
-    <% unless @movie.reviews.where.not(user_id: session[:userid]).size == 0 %>
-    <h2 class="h2-container h2-background">Что пишут другие</h2>
-    <div><%= render partial: "review/inner", collection: @movie.reviews.where.not(user_id: session[:userid]) %></div>
-    <% end %>
+      <% unless @movie.reviews.where.not(user_id: session[:userid]).size == 0 %>
+      <h2 class="h2-container h2-background">Что пишут другие</h2>
+      <div><%= render partial: "review/inner", collection: @movie.reviews.where.not(user_id: session[:userid]) %></div>
+      <% end %>
+    </div>
   </div>
 </div>
 <div class="movie-right-container">
-  <h2 class="h2-container h2-background">Последний отзыв такой</h2>
-  <% unless @last_user_review.nil? %>
-  <strong><%= @last_user_review.nickname %></strong>
-  <%= @movie.reviews.last.content[0..70].gsub(/\s\w+\s*$/,'...') %>
-  <% else %>
-  <i>А отзывов-то и нет</i>
-  <% end %>
-  <h2 class="h2-container h2-background">А вот последний комментарий</h2>
+  <h2 class="h2-container h2-background">Вот последний комментарий</h2>
   <% unless @movie.comments.last.nil? %>
   <%= @movie.comments.last.content  %>
     <footer>

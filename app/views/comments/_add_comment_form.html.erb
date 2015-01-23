@@ -1,5 +1,4 @@
 <%= form_for @comment do |f| %>
-	<%= f.hidden_field :parent_id %>
 	<%= f.hidden_field :user_id %>
 	<%= f.hidden_field :movie_id %>
     <%= f.text_area :content, class: "comment-review-textbox" %>

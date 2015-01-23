@@ -1,6 +1,7 @@
 class CreateMovies < ActiveRecord::Migration
   def change
     create_table :movies do |t|
+      t.references :user
       t.string :title
       t.string :orig_title
       t.string :year
