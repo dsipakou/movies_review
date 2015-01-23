@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20150122080912) do
     t.integer  "movie_id"
     t.integer  "user_id"
     t.text     "content"
-    t.integer  "stars"
+    t.integer  "stars",      default: 0
     t.boolean  "awesome"
     t.datetime "created_at"
     t.datetime "updated_at"

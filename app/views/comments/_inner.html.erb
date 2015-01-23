@@ -1,11 +1,11 @@
 <div>
-	<div class="comment-block">
+	<div class="comment-block" data-comment-id=<%= inner.id %>>
 		<div class="comment-block-inner">
 			<div class="comment-body">
 				<%= inner.content %>
 			</div>
 			<footer>
-				Написал <%= User.find(inner.user_id).nickname %> <%= inner.updated_at.to_formatted_s(:short) %>
+				<a class="c_icon" href="//leprosorium.ru/comments/1831776/#40979559">&nbsp;</a> Написал <%= User.find(inner.user_id).nickname %> <%= inner.updated_at.to_formatted_s(:short) %> <a class="c_answer" data-comment-id=<%= inner.id %>>ответить</a>
 			</footer>
 		</div>
 	</div>

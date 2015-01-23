@@ -345,6 +345,24 @@ a {
 	text-align: center;
 }
 
+.movie-stars {
+	li {
+		float:left;
+		list-style: none;
+		margin: 0;
+ 		padding: 0; 
+ 		width: 25px;
+  		height: 25px;
+ 		background: url(/assets/star.png) top left;
+ 		cursor: pointer;
+
+ 	}
+
+	li.on {
+		background: url(/assets/star.png) 0 -25px;
+ 	}
+}
+
 .movie-cover-image {
 	max-width: 150px;
 	display: block;
@@ -356,6 +374,7 @@ a {
 .movie-main-content {
 	width: 455px;
 	margin-right: 0px;
+
 }
 
 .new_movie, .edit_movie {

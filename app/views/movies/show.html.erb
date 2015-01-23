@@ -2,7 +2,8 @@
   <!-- <p id="notice"><%= notice %></p> -->
   <div class="stacked"><%= link_to 'Хочу на главную!', index_path, class: "action-link" %></div>
   <div class="movie-cover-image-container col">
-      <%= image_tag ("posters/" + @movie.image), class: "movie-cover-image" unless @movie.image.empty? %>
+    <%= image_tag ("posters/" + @movie.image), class: "movie-cover-image" unless @movie.image.empty? %>
+    <%= render "review/star_rating" %>     
   </div>
   <div class="movie-main-content col last">
     <h1 class="movie-title"><%= @movie.title %></h1>
