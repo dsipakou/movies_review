@@ -11,13 +11,13 @@
       <% unless @movie.link.empty? %><%= link_to @movie.orig_title, @movie.link %>
       <% else %><%= @movie.orig_title %>
       <% end %>
-      (<%= @movie.year %>)
+      <%= "(#{@movie.year})" if @movie.year? %>
     </div>
   </div>
   <div class="clear"></div>
   <div>
     <div><%= link_to 'Редактировать кино', edit_movie_path(@movie), class: "action-link" %>
-    <%= link_to "Комментарии (#{@movie.comments.size})", comments_path(params[:id]), class: "action-link right" %></div>
+    <%= link_to raw("Комментариев #{@movie.comments.size} | #{get_new_responses_amount(@movie, 'comment')}"), comments_path(params[:id]), class: "action-link right" %></div>
     <div class="movie-added-by-text left">Фильм любезно добавил <strong><%= User.find(@movie.user_id).nickname %></strong></div>
     <div>
       <% if @movie.reviews.where({user_id: session[:userid]}).size == 0 %>

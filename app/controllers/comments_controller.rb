@@ -15,6 +15,12 @@ class CommentsController < ApplicationController
     @movie = Movie.where({id: params[:movie_id]}).first
     @comment = Comment.new(:movie_id => @movie.id, :user_id => session[:userid])
     @last_user_review = User.find(@movie.reviews.last.user_id) unless @movie.reviews.last.nil?
+    @track_times = TrackTimes.where({movie_id: @movie.id, user_id: session[:userid]})
+    unless @track_times.size == 0
+      @track_times.first.update(comment_view_time: Time.now)
+    else
+      TrackTimes.new(movie_id: @movie.id, user_id: session[:userid], comment_view_time: Time.now).save
+    end
   end
 
   # GET /comments/new

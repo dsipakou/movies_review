@@ -124,6 +124,10 @@ a {
 	float: left;
 }
 
+.half {
+	width: 50%;
+}
+
 .right-border {
 	border-right: 1px solid #e0e5e9;
 }
@@ -204,7 +208,7 @@ a {
 	display: block;
 	position: absolute;
 	top: 20px;
-	left: 105px;
+	left: 50px;
 }
 
 .header-content {
@@ -290,30 +294,45 @@ a {
 
 .index-page-movie-desc {
 	float: left;
-	width: 456px;	
+	#width: 456px;	
+
+	td.top {
+		vertical-align: top;
+	}
+
+	td.bottom {
+		vertical-align: bottom;
+		font-size: 80%;
+	}
 
 	.index-page-image {
 		float: left;
 		margin-right: 10px;
+		width: 105px;
 	}
 
-	.index-page-movie-title {
-		float: left;
-		width: 390px;
+	.index-page-movie-content {
+		width: 335px;
 
-		a {
-			font-size: 16px;
-			color: #666600;
+		.index-page-movie-title {
+			float: left;
+			width: 335px;
+
+			a {
+				font-size: 16px;
+				color: #666600;
+			}
+		}
+
+		.index-page-movie-orig-title {
+			font-size: 12px;
 		}
 	}
 
-	.index-page-movie-orig-title {
-		font-size: 12px;
-	}
 
 	img {
-		max-height: 75px;
-		width: 50px;
+		max-height: 160px;
+		width: 98px;
 	}
 }
 

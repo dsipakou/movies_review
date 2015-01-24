@@ -19,20 +19,9 @@ class ReviewsController < ApplicationController
 		respond_to do |format|
 			if @review.save
 				format.html { redirect_to @review.movie, notice: "Thanks"}
-				format.json { render :json => {}}
 			end
 		end
 	end
-
-	def update
-		@review = Review.find(params[:id])
-		@rating.update_attributes(params[:rating])
-		respond_to do |format|
-			if @review.save
-				format.json { render :json => {} }
-				
-			end
-		end
 
 	def destroy
 		@review.destroy

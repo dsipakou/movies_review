@@ -21,6 +21,12 @@ class MoviesController < ApplicationController
     @review = Review.new(:movie_id => @movie.id, :user_id => session[:userid])
     @user_name = User.find(@review.user_id).nickname
     @last_user_review = User.find(@movie.reviews.last.user_id) unless @movie.reviews.last.nil?
+    @track_times = TrackTimes.where({movie_id: @movie.id, user_id: session[:userid]})
+    unless @track_times.size == 0
+      @track_times.first.update(review_view_time: Time.now)
+    else
+      TrackTimes.new(movie_id: @movie.id, user_id: session[:userid], review_view_time: Time.now).save
+    end
   end
 
   # GET /movies/new

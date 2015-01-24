@@ -12,9 +12,27 @@
 		<tr>
 			<td class="index-page-td-with-border">
 				<div class="index-page-movie-desc">
-					<div class="index-page-image"><%= image_tag ("posters/" + movie.image) unless movie.image.empty? %></div>
-					<div class="index-page-movie-title"><%= link_to movie.title, movie_path(movie) %> </div>
-					<div class="index-page-movie-orig-title"><%= movie.orig_title %> (<%= movie.year %>)</div>
+					<table>
+						<tr>
+							<td rowspan="2">
+								<div class="index-page-image left"><%= image_tag ("posters/" + movie.image) unless movie.image.empty? %></div>
+							</td>
+							<td class="top" colspan="2">
+									<div class="index-page-movie-content left">
+										<div class="index-page-movie-title"><%= link_to movie.title, movie_path(movie) %> </div>
+										<div class="index-page-movie-orig-title"><%= movie.orig_title %> <%= "(#{movie.year})" if movie.year? %></div>
+									</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="bottom half">
+								<i><%= link_to raw("Рецензий #{movie.reviews.size} | #{get_new_responses_amount(movie, "review")}"), movie_path(movie) %></i>
+							</td>
+							<td class="bottom half">
+								<i><%= link_to raw("Комментариев #{movie.comments.size} | #{get_new_responses_amount(movie, "comment")}"), comments_path(movie.id)%></i>
+							</td>
+						</tr>
+					</table>
 				</div>
 			</td>
 		</tr>

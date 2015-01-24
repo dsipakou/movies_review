@@ -1,9 +1,9 @@
 class CreateComments < ActiveRecord::Migration
   def change
     create_table :comments do |t|
-      t.references :movie
+      t.references :movie, index: true
+      t.references :user, index: true
       t.integer :parent_id
-      t.references :user
       t.text :content
 
       t.timestamps

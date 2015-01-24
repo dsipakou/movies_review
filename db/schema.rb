@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122080912) do
+ActiveRecord::Schema.define(version: 20150124075944) do
 
   create_table "comments", force: true do |t|
     t.integer  "movie_id"
@@ -42,6 +42,18 @@ ActiveRecord::Schema.define(version: 20150122080912) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "track_times", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "movie_id"
+    t.datetime "review_view_time"
+    t.datetime "comment_view_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "track_times", ["movie_id"], name: "index_track_times_on_movie_id", using: :btree
+  add_index "track_times", ["user_id"], name: "index_track_times_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username",        limit: 20

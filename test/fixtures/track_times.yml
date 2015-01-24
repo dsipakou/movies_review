@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: 
+  movie_id: 
+  review_view_time: 2015-01-24 10:59:44
+  comment_view_time: 2015-01-24 10:59:44
+
+two:
+  user: 
+  movie_id: 
+  review_view_time: 2015-01-24 10:59:44
+  comment_view_time: 2015-01-24 10:59:44
