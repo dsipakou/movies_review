@@ -4,6 +4,6 @@ class MainController < ApplicationController
 
   def index
   	authorize! :index, @movies
-  	@movies = Movie.all;
+  	@movies = Movie.order("updated_at DESC");
   end
 end
