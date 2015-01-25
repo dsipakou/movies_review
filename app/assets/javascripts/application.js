@@ -17,6 +17,13 @@
 //= require mootools
 
 window.addEvent('domready', function() {
+	$("#user_star").click(function() {
+		$.ajax({
+			url: '/reviews/5',
+			method: "PATCH",
+			data: { rating: 3 }
+		});
+	});
 	commentsHandler.initComments();
 });
 

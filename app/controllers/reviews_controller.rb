@@ -2,7 +2,6 @@ class ReviewsController < ApplicationController
 
 	before_action :set_review, only: [:show, :edit, :update, :destroy]
 
-
 	def index
 		authorize! :index, @review
 
@@ -11,6 +10,11 @@ class ReviewsController < ApplicationController
 	def show
 		authorize! :show, @review
 		@user_name = User.find(@review.user_id).nickname
+	end
+
+	def update
+		@review = Review.find(params[:id])
+		@review.update(stars: params[:rating])
 	end
 
 	def create

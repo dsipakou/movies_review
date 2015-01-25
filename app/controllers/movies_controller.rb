@@ -5,6 +5,8 @@ class MoviesController < ApplicationController
   layout "main"
 
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :js
+
 
   # GET /movies
   # GET /movies.json
