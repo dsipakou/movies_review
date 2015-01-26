@@ -15,12 +15,15 @@ ActiveRecord::Schema.define(version: 20150124075944) do
 
   create_table "comments", force: true do |t|
     t.integer  "movie_id"
-    t.integer  "parent_id"
     t.integer  "user_id"
+    t.integer  "parent_id"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "comments", ["movie_id"], name: "index_comments_on_movie_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "movies", force: true do |t|
     t.integer  "user_id"
@@ -42,6 +45,9 @@ ActiveRecord::Schema.define(version: 20150124075944) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "reviews", ["movie_id"], name: "index_reviews_on_movie_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "track_times", force: true do |t|
     t.integer  "user_id"

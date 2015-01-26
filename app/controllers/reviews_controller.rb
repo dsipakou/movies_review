@@ -13,8 +13,20 @@ class ReviewsController < ApplicationController
 	end
 
 	def update
-		@review = Review.find(params[:id])
-		@review.update(stars: params[:rating])
+		params_to_update = {}
+		if params[:awesome] 
+			params_to_update = { awesome: params[:awesome] }
+		elsif params[:stars]
+			params_to_update = { stars: params[:awesome] }
+		else
+			params_to_update = review_params
+		end
+		if @review.update(params_to_update)
+			respond_to do |format|
+        		format.js { }
+				format.html { redirect_to @review.movie }
+      		end
+    	end
 	end
 
 	def create
@@ -31,6 +43,7 @@ class ReviewsController < ApplicationController
 		@review.destroy
 		respond_to do |format|
 			format.html { redirect_to @review.movie, notice: "Deleted" } 
+			format.js
 		end
 	end
 

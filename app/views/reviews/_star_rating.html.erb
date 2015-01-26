@@ -1,0 +1,10 @@
+<% form_id = "review_#{@review.movie_id}_stars" %>
+<%= form_for (@review), html: { id: form_id, class: "movie-stars-form" } do |f| %>
+	<div class="movie-stars stacked">
+	    <ul>
+	    <% (1..3).each do |i| %>
+	    	<li data-movie-id=<%= @review.movie_id %> data-user-id=<%= @review.user_id %> data-stars=<%= i %> data-form-id=<%= form_id %> class="movie-star"></li>
+	    <% end %>
+	    </ul>
+	</div>
+<% end %>

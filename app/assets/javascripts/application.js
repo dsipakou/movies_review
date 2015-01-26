@@ -16,15 +16,11 @@
 //= require_tree .
 //= require mootools
 
-window.addEvent('domready', function() {
-	$("#user_star").click(function() {
-		$.ajax({
-			url: '/reviews/5',
-			method: "PATCH",
-			data: { rating: 3 }
-		});
-	});
+$(window).load(function() {
+	ratingHandler.initRating();
 	commentsHandler.initComments();
+});
+window.addEvent('domready', function() {
 });
 
 commentForm = function(container) {
@@ -105,6 +101,34 @@ commentsHandler = {
 			comment_place_holder.inject(comment_block);
 			commentsHandler.new_comments_form[comment_id] = new commentForm(comment_place_holder);
 		}
+	}
+}
+
+ratingHandler = {
+	initRating : function() {
+		
+		ratingHandler.handleButtonReview();
+	},
+
+	handleButtonReview : function() {
+		var button_movie_review_block = $$('div#button-review');
+		button_movie_review_block.addEvent('click', function() {
+			var temp = this;
+			$.ajax({
+				url: '/reviews/' + this.getProperty('data-review-id'),
+				method: "PATCH",
+				data: { awesome: this.getProperty('data-rating') }
+			}).done(function() {
+				$(temp).siblings().removeClass("checked");
+				temp.addClass("checked");
+				temp.getSiblings('[data-type="clear-awesome"]').removeClass('hidden')
+				if (temp.getProperty('data-rating') == "") {
+					$(temp).addClass("hidden");
+				} else {
+					$(temp).removeClass("hidden");
+				}
+			});
+		});
 	}
 }
 

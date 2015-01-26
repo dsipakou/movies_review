@@ -3,7 +3,7 @@
   <div class="stacked"><%= link_to 'Хочу на главную!', index_path, class: "action-link" %></div>
   <div class="movie-cover-image-container col">
     <%= image_tag ("posters/" + @movie.image), class: "movie-cover-image" unless @movie.image.empty? %>
-    <%= render "review/star_rating" %>     
+    <%= render "reviews/star_rating" %>     
   </div>
   <div class="movie-main-content col last">
     <h1 class="movie-title"><%= @movie.title %></h1>
@@ -13,25 +13,26 @@
       <% end %>
       <%= "(#{@movie.year})" if @movie.year? %>
     </div>
-    <div id="user_star"><a>2</a></div>
+    <div class="movie-awesome-text">Кроме того, я считаю, что этот фильм...</div>
+    <%= render partial: 'reviews/buttons_rating', collection: @movie.reviews.where({user_id: session[:userid]}) %>
   </div>
   <div class="clear"></div>
   <div>
     <div><%= link_to 'Редактировать кино', edit_movie_path(@movie), class: "action-link" %>
     <%= link_to raw("Комментариев #{@movie.comments.size} | #{get_new_responses_amount(@movie, 'comment')}"), comments_path(params[:id]), class: "action-link right" %></div>
-    <div class="movie-added-by-text left">Фильм любезно добавил <strong><%= User.find(@movie.user_id).nickname %></strong></div>
+    <div class="movie-added-by-text">Фильм любезно добавил <strong><%= User.find(@movie.user_id).nickname %></strong></div>
     <div>
-      <% if @movie.reviews.where({user_id: session[:userid]}).size == 0 %>
+      <% if @movie.reviews.where({user_id: session[:userid]}).size == 0 || !@movie.reviews.where({user_id: session[:userid]}).first.content? %>
       <h2 class="h2-container h2-background">Напишу-ка я отзыв</h2>
-      <%= render "review/form" %>
+      <%= render "reviews/form" %>
       <% else %>
       <h2 class="h2-container h2-background">Что я написал</h2>
-      <div><%= render partial: "review/inner", collection: @movie.reviews.where({user_id: session[:userid]}) %></div>
+      <div><%= render partial: "reviews/inner", collection: @movie.reviews.where({user_id: session[:userid]}) %></div>
       <% end %>
 
       <% unless @movie.reviews.where.not(user_id: session[:userid]).size == 0 %>
       <h2 class="h2-container h2-background">Что пишут другие</h2>
-      <div><%= render partial: "review/inner", collection: @movie.reviews.where.not(user_id: session[:userid]) %></div>
+      <div><%= render partial: "reviews/inner", collection: @movie.reviews.where.not(user_id: session[:userid]) %></div>
       <% end %>
     </div>
   </div>

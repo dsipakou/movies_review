@@ -20,7 +20,12 @@ class MoviesController < ApplicationController
   def show
     authorize! :show, @movie
     @movie = Movie.find(params[:id]) 
-    @review = Review.new(:movie_id => @movie.id, :user_id => session[:userid])
+    #@review = Review.new(:movie_id => @movie.id, :user_id => session[:userid])
+    if Review.where(movie_id: @movie.id, user_id: session[:userid]).present?
+      @review = Review.where(movie_id: @movie.id, user_id: session[:userid]).first
+    else
+      @review = Review.create(movie_id: @movie.id, user_id: session[:userid])
+    end
     @user_name = User.find(@review.user_id).nickname
     @last_user_review = User.find(@movie.reviews.last.user_id) unless @movie.reviews.last.nil?
     @track_times = TrackTimes.where({movie_id: @movie.id, user_id: session[:userid]})
