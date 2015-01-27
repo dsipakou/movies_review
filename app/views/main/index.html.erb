@@ -26,10 +26,10 @@
 						</tr>
 						<tr>
 							<td class="bottom half">
-								<i><%= link_to raw("Рецензий #{movie.reviews.size} | #{get_new_responses_amount(movie, "review")}"), movie_path(movie) %></i>
+								<i><%= link_to raw("Рецензий #{get_all_responses_amount(movie, 'review')} | #{get_new_responses_amount(movie, 'review')}"), movie_path(movie) %></i>
 							</td>
 							<td class="bottom half">
-								<i><%= link_to raw("Комментариев #{movie.comments.size} | #{get_new_responses_amount(movie, "comment")}"), comments_path(movie.id)%></i>
+								<i><%= link_to raw("Комментариев #{get_all_responses_amount(movie, 'comment')} | #{get_new_responses_amount(movie, 'comment')}"), comments_path(movie.id)%></i>
 							</td>
 						</tr>
 					</table>

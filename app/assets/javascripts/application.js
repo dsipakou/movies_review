@@ -12,15 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 //= require mootools
 
-$(window).load(function() {
+window.addEvent('domready', function() {
 	ratingHandler.initRating();
 	commentsHandler.initComments();
-});
-window.addEvent('domready', function() {
 });
 
 commentForm = function(container) {

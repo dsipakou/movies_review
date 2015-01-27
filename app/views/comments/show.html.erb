@@ -13,7 +13,7 @@
         <% unless @movie.link.empty? %><%= link_to @movie.orig_title, @movie.link %>
         <% else %><%= @movie.orig_title %>
         <% end %>
-        (<%= @movie.year %>)
+        <%= "(#{@movie.year})" if @movie.year?%>
       </div>
     </div>
     <div class="clear"></div>
