@@ -17,13 +17,12 @@ ActiveRecord::Schema.define(version: 20150124075944) do
     t.integer  "movie_id"
     t.integer  "parent_id"
     t.integer  "user_id"
-    t.text     "content"
+    t.text     "content",    limit: 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "movies", force: true do |t|
-    t.integer  "user_id"
     t.string   "title"
     t.string   "orig_title"
     t.string   "year"
@@ -36,8 +35,8 @@ ActiveRecord::Schema.define(version: 20150124075944) do
   create_table "reviews", force: true do |t|
     t.integer  "movie_id"
     t.integer  "user_id"
-    t.text     "content"
-    t.integer  "stars",      default: 0
+    t.text     "content",    limit: 16777215
+    t.integer  "stars"
     t.boolean  "awesome"
     t.datetime "created_at"
     t.datetime "updated_at"
