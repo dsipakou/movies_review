@@ -149,6 +149,14 @@ a {
 	color: red;
 }
 
+.bold {
+	font-weight: bold;
+}
+
+.hidden {
+	display: none;
+}
+
 .b-auth_form {
  	height: 500px;
  	width: 405px;
@@ -398,6 +406,11 @@ a {
 	width: 455px;
 	margin-right: 0px;
 
+	.movie-awesome-text {
+		font-size: 11px;
+		color: #555;
+		padding-bottom: 10px;
+	}
 }
 
 .movie-added-by-text {
@@ -501,4 +514,78 @@ a {
 	margin-bottom: 4px;
 	line-height: 17px;
 	position: relative;
+}
+
+.movie-awesome-buttons-holder {
+	width: 400px;
+	float: left;
+}
+
+#button-review.left, #button-review.right {
+	background: #FFFFFF;
+	border-color: #ddd;
+	line-height: 100%;
+	text-overflow: ellipsis;
+	border-radius: 4px;
+	border-style: solid;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: left;
+	border-width: 1px;
+	height: 15px;
+	padding: 5px 0 5px 5px;
+	width: 105px;
+	color: #181818;
+	cursor: pointer;
+
+}
+
+#button-review.cancel-awesome {
+	float: left;
+	padding-top: 10px;
+	padding-left: 40px;
+
+	cursor: pointer;
+
+	a {
+	vertical-align: middle;
+		text-decoration: underline;
+		font-size: 11px;
+	}
+}
+
+#button-review.checked.left {
+	
+	background-image: linear-gradient(#64bf5d,#64ac57);
+}
+
+#button-review.checked.right {
+	background-image: linear-gradient(#f7434f,#F5535E);	
+}
+
+#button-review.checked {
+	border-color: #ddd;
+	line-height: 100%;
+	text-overflow: ellipsis;
+	border-radius: 4px;
+	border-style: solid;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: left;
+	border-width: 1px;
+	height: 15px;
+	padding: 5px 0 5px 5px;
+	width: 105px;
+	color: #FFFFFF;
+	cursor: pointer;
+
+	.tick {
+		background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAALCAYAAACksgdhAAAASElEQVR42pXRywkAIAwDUJd1ATdxg24aKQQ8BKIp5Pjob%2FzWXrM6ACIApjJAFAMAeQeiu%2BQLEOmSDihiHJDxDBDkf%2BGRHsShA2nHmi8jtgEiAAAAAElFTkSuQmCC);
+		background-repeat: no-repeat;
+		height: 11px;
+		vertical-align: middle;
+		width: 13px;
+		float: left;
+		padding-right: 5px;
+	}
 }
