@@ -1,13 +1,24 @@
-<div>
+<div class="review-wrapper">
 	<% if inner.content? %>
 		<% unless User.find(inner.user_id).id == session[:userid] %>
-		<strong><%= User.find(inner.user_id).nickname %></strong>
-		<br>
+			<div>
+				<div class="review-author stacked"><%= User.find(inner.user_id).nickname %></div>
+				<% unless inner.awesome.nil? %>
+					<% if inner.awesome %>							
+						<div class="review-awesome-text good">охуенное кино</div>
+					<% else %>
+						<div class="review-awesome-text bad">фильм говно</div>
+					<% end %>
+				<% end %>
+				<div class="review-time"><%= inner.updated_at.to_formatted_s(:short) %></div>
+			</div>
 		<% end %>
-		
-		<%= inner.content %><br>
+		<div class="review-content">
+			<%= inner.content %>
+		</div>
 		<% if inner.user_id == session[:userid] %>
 			<%= link_to "Хочу удалить это", inner, method: :delete, data: { confirm: "Хорошо ли ты подумал, друг?"}, class: "small-link" %>
 		<% end %>
 	<% end %>
 </div>
+<div class="review-separator"></div>

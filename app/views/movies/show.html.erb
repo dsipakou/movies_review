@@ -32,7 +32,7 @@
 
       <% unless @movie.reviews.where.not(user_id: session[:userid]).size == 0 %>
       <h2 class="h2-container h2-background">Что пишут другие</h2>
-      <div><%= render partial: "reviews/inner", collection: @movie.reviews.where.not(user_id: session[:userid]) %></div>
+      <div class="review-holder"><%= render partial: "reviews/inner", collection: @movie.reviews.where.not(user_id: session[:userid]) %></div>
       <% end %>
     </div>
   </div>
