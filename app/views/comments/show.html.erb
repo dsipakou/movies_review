@@ -22,7 +22,7 @@
     <h2 class="h2-container h2-background">Последний отзыв таков</h2>
     <% unless @last_user_review.nil? %>
     <strong><%= @last_user_review.nickname %></strong>
-    <%= @movie.reviews.last.content[0..70].gsub(/\s\w+\s*$/,'...') %>
+    <%= @movie.reviews.where.not(content: nil).last.content[0..70].gsub(/\s\w+\s*$/,'...') %>
     <% else %>
     <i>А отзывов-то и нет</i>
     <% end %>
