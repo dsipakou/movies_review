@@ -327,6 +327,34 @@ a {
 		width: 105px;
 	}
 
+	.index-page-awesome {
+		
+		text-align: center;
+
+		img.index-medal {
+			height: 25px;
+			width: 25px;
+			position: relative;
+		}
+
+		div.index-medal {
+			position: relative;
+			margin-bottom: 5px;
+			text-align: center;
+
+			.count {
+				position:absolute;
+				aligh: center;
+				top: 7px;
+				left: 13px;
+				color: #FFF;
+				font-weight: bold;
+				font-size: 14px;
+			}
+		}
+	}
+
+
 	.index-page-movie-content {
 		width: 335px;
 
@@ -346,7 +374,7 @@ a {
 	}
 
 
-	img {
+	img.poster {
 		max-height: 160px;
 		width: 98px;
 	}

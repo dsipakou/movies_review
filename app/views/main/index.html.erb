@@ -1,11 +1,3 @@
-<div>
-<% ('a'..'z').to_a.each do |char| %>
-<strong><%= link_to char %></strong>
-<% end %><br>
-<% 'а,б,в,г,д,е,ж,з,и,й,к,л,м,н,о,п,р,с,т,у,ф,х,ц,ч,ш,щ,э,ю,я'.split(',').each do |char| %>
-<strong><%= link_to char %></strong>
-<% end %>
-</div>
 <div class="movie-left-container right-border">
 	<table class="index-page-table">
 		<% @movies.each do |movie| %>
@@ -15,13 +7,27 @@
 					<table>
 						<tr>
 							<td rowspan="2">
-								<div class="index-page-image left"><%= image_tag ("posters/" + movie.image) unless movie.image.empty? %></div>
+								<div class="index-page-image left"><%= image_tag ("posters/" + movie.image), class: "poster" unless movie.image.empty? %></div>
 							</td>
 							<td class="top" colspan="2">
 									<div class="index-page-movie-content left">
 										<div class="index-page-movie-title"><%= link_to movie.title, movie_path(movie) %> </div>
 										<div class="index-page-movie-orig-title"><%= movie.orig_title %> <%= "(#{movie.year})" if movie.year? %></div>
 									</div>
+							</td>
+							<td rowspan="2" class="top">
+								<div class="index-page-awesome">
+									<% if get_awesome_good_amount(movie) > 0 %>
+										<div class="index-medal"><%= image_tag ("medal.gif") %> 
+											<div class="count"><%= get_awesome_good_amount(movie) %></div>
+										</div>	
+									<% end %>
+									<% if get_awesome_bad_amount(movie) > 0 %>
+										<div class="index-medal"><%= image_tag ("shit.jpg"), class: "index-medal" %>
+											<div class="count"><%= get_awesome_bad_amount(movie) %></div>
+										</div>										
+									<% end %>
+								</div>
 							</td>
 						</tr>
 						<tr>

@@ -29,4 +29,17 @@ module MainHelper
 		end
 		@size > 0 ? "<strong>новых #{@size}</strong>" : "новых нет"
 	end
+
+	def get_awesome_good_amount(movie)
+		Review.where(movie_id: movie.id, awesome: 1).size
+	end
+
+	def get_awesome_bad_amount(movie)
+		Review.where(movie_id: movie.id, awesome: 0).size
+	end
+
+	private
+	def get_awesome_amount(movie)
+		Review.where(movie_id: movie.id).where.not(awesome: nil)
+	end
 end
