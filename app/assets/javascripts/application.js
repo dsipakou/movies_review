@@ -53,7 +53,7 @@ commentForm.prototype.show = function() {
 	this.container.morph({
 		'maxHeight' : 1000
 	});*/
-	this.container.removeClass('hidden');
+	//this.container.removeClass('hidden');
 	$(this.container).show(); 
 }
 
@@ -69,7 +69,7 @@ commentForm.prototype.hide = function() {
 	this.container.morph({
 		'maxHeight' : 0
 	}); */
-	this.container.addClass('hidden');
+	//this.container.addClass('hidden');
 	$(this.container).hide();
 }
 
