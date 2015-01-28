@@ -1,5 +1,5 @@
-<div class="review-wrapper">
-	<% if inner.content? %>
+<% if inner.content? %>
+	<div class="review-wrapper">
 		<% unless User.find(inner.user_id).id == session[:userid] %>
 			<div>
 				<div class="review-author stacked"><%= User.find(inner.user_id).nickname %></div>
@@ -28,6 +28,6 @@
 		<% if inner.user_id == session[:userid] %>
 			<%= link_to "Хочу удалить это", inner, method: :delete, data: { confirm: "Хорошо ли ты подумал, друг?"}, class: "small-link" %>
 		<% end %>
-	<% end %>
-</div>
-<div class="review-separator"></div>
+	</div>
+	<div class="review-separator"></div>
+<% end %>
