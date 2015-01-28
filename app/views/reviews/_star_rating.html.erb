@@ -1,7 +1,7 @@
 <div class="movie-stars stacked">
     <ul>
     <% (1..3).each do |i| %>
-    	<li data-movie-id=<%= @review.movie_id %> data-user-id=<%= @review.user_id %> data-stars=<%= i %> class='<%= 'on' unless i > @rounded_stars %>'></li>
+    	<li class='<%= 'on' unless i > @rounded_stars %>'></li>
     <% end %>
     </ul>
     <div class="stars-transscript right"><%= @rounded_stars %></div>
