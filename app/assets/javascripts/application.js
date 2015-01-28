@@ -38,7 +38,7 @@ commentForm.prototype.toggle = function () {
 };
 
 commentForm.prototype.show = function() {
-	this.container.set('styles', {
+	/*this.container.set('styles', {
 		'overflow' : 'hidden',
 		'maxHeight' : 0
 	});
@@ -52,11 +52,13 @@ commentForm.prototype.show = function() {
 	});
 	this.container.morph({
 		'maxHeight' : 1000
-	}); 
+	});*/
+	this.container.removeClass('hidden');
+	$(this.container).show(); 
 }
 
 commentForm.prototype.hide = function() {
-	this.container.set('morph', {
+	/*this.container.set('morph', {
 		duration : 222,
 		onComplete : (function () {
 			this.container.addClass('hidden');
@@ -66,7 +68,9 @@ commentForm.prototype.hide = function() {
 
 	this.container.morph({
 		'maxHeight' : 0
-	}); 
+	}); */
+	this.container.addClass('hidden');
+	$(this.container).hide();
 }
 
 commentForm.prototype.build = function() {
