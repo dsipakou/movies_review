@@ -3,7 +3,7 @@
 		<% unless User.find(inner.user_id).id == session[:userid] %>
 			<div>
 				<div class="review-author stacked"><%= User.find(inner.user_id).nickname %></div>
-				<% if inner.stars > 0 %>
+				<% if !inner.stars.nil? && inner.stars > 0 %>
 					<div class="movie-stars">
     					<ul>
     					<% (1..3).each do |i| %>
