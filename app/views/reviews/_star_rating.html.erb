@@ -4,5 +4,7 @@
     	<li class='<%= 'on' unless i > @rounded_stars %>'></li>
     <% end %>
     </ul>
-    <div class="stars-transscript right"><%= @rounded_stars %></div>
+    <% if @rounded_stars > 0 %>
+    	<div class="stars-transscript right"><%= @rounded_stars %></div>
+    <% end %>
 </div>
