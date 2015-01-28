@@ -103,12 +103,12 @@ commentsHandler = {
 
 ratingHandler = {
 	initRating : function() {
-		
 		ratingHandler.handleButtonReview();
+		ratingHandler.handleStarsReview();
 	},
 
 	handleButtonReview : function() {
-		var button_movie_review_block = $$('div#button-review');
+		var button_movie_review_block = $$('div.button-review-good-bad');
 		button_movie_review_block.addEvent('click', function() {
 			var temp = this;
 			$.ajax({
@@ -126,6 +126,22 @@ ratingHandler = {
 				}
 			});
 		});
+	},
+
+	handleStarsReview: function() {
+		var star_movie_review_block = $$("li.movie-star-rating-input")
+		star_movie_review_block.addEvent('click', function() {
+			var temp = this;
+			$.ajax({
+				url: '/reviews/' + this.getProperty('data-review-id'),
+				method: "PATCH",
+				data: { stars: this.getProperty('data-stars') }
+			}).done(function() {
+				$(temp).siblings().removeClass("on");
+				temp.addClass("on");
+				$(temp).prevAll().addClass("on");
+			});
+		})
 	}
 }
 

@@ -306,6 +306,7 @@ a {
 		border-top: 1px solid #e8e8e8;
 		padding: 5px;
 	}
+
 }
 
 .index-page-movie-desc {
@@ -410,7 +411,11 @@ a {
 	text-align: center;
 }
 
-.movie-stars {
+.movie-stars-button-holder {
+	width: 400px;
+}
+
+.movie-stars{
 	li {
 		float:left;
 		list-style: none;
@@ -419,9 +424,43 @@ a {
  		width: 25px;
   		height: 25px;
  		background: url(/assets/star.png) top left;
- 		cursor: pointer;
-
  	}
+
+	li.on {
+		background: url(/assets/star.png) 0 -25px;
+ 	}
+
+	.stars-transscript {
+		font-size: 11px;
+		color: #666;
+ 	}
+}
+
+.index-movie-stars {
+	width: 335px;
+
+	.stars-transscript {
+		margin-left: 10px;
+	}
+
+	ul {
+		padding-left: 10px;
+	}
+}
+
+.movie-stars-input {
+	width: 200px;
+	li {
+		position: relative;
+		float: left;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		width: 25px;
+		height: 25px;
+		background: url(/assets/star.png) top left;
+		cursor: pointer;
+	}
 
 	li.on {
 		background: url(/assets/star.png) 0 -25px;
@@ -440,10 +479,21 @@ a {
 	width: 455px;
 	margin-right: 0px;
 
+	.movie-stars-text {
+		float: left;
+		margin-top: 20px;
+		font-size: 11px;
+		color: #555;
+		padding-bottom: 10px;
+		width: 200px;
+		height: 25px;
+	}
+
 	.movie-awesome-text {
 		font-size: 11px;
 		color: #555;
 		padding-bottom: 10px;
+		width: 100%;
 	}
 }
 
@@ -555,7 +605,7 @@ a {
 	float: left;
 }
 
-#button-review.left, #button-review.right {
+.button-review-good-bad.left, .button-review-good-bad.right {
 	background: #FFFFFF;
 	border-color: #ddd;
 	line-height: 100%;
@@ -574,7 +624,7 @@ a {
 
 }
 
-#button-review.cancel-awesome {
+.button-review-good-bad.cancel-awesome {
 	float: left;
 	padding-top: 10px;
 	padding-left: 40px;
@@ -588,16 +638,16 @@ a {
 	}
 }
 
-#button-review.checked.left {
+.button-review-good-bad.checked.right {
 	
 	background-image: linear-gradient(#64bf5d,#64ac57);
 }
 
-#button-review.checked.right {
+.button-review-good-bad.checked.left {
 	background-image: linear-gradient(#f7434f,#F5535E);	
 }
 
-#button-review.checked {
+.button-review-good-bad.checked {
 	border-color: #ddd;
 	line-height: 100%;
 	text-overflow: ellipsis;
@@ -640,6 +690,10 @@ a {
 	.review-awesome-text {
 		float: left;
 		margin-left: 15px;
+	}
+
+	.movie-stars {
+		margin-left: 10px;
 	}
 
 	.review-awesome-text.good {

@@ -23,9 +23,12 @@ class MoviesController < ApplicationController
     #@review = Review.new(:movie_id => @movie.id, :user_id => session[:userid])
     if Review.where(movie_id: @movie.id, user_id: session[:userid]).present?
       @review = Review.where(movie_id: @movie.id, user_id: session[:userid]).first
+      @rounded_stars = Review.where(movie_id: @movie.id).where("stars > 0").average(:stars)
     else
       @review = Review.create(movie_id: @movie.id, user_id: session[:userid])
+      @rounded_stars = 0
     end
+
     @user_name = User.find(@review.user_id).nickname
     @last_user_review = User.find(@movie.reviews.last.user_id) unless @movie.reviews.last.nil?
     @track_times = TrackTimes.where({movie_id: @movie.id, user_id: session[:userid]})

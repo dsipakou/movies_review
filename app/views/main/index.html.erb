@@ -14,6 +14,14 @@
 										<div class="index-page-movie-title"><%= link_to movie.title, movie_path(movie) %> </div>
 										<div class="index-page-movie-orig-title"><%= movie.orig_title %> <%= "(#{movie.year})" if movie.year? %></div>
 									</div>
+									<div class="movie-stars index-movie-stars stacked left">
+										<ul>
+    									<% (1..3).each do |i| %>
+    										<li class='<%= 'on' unless i > get_rounded_stars(movie) %>'></li>
+    									<% end %>
+    									</ul>
+    									<div class="stars-transscript left"><%= get_rounded_stars(movie) %></div>
+									</div>
 							</td>
 							<td rowspan="2" class="top">
 								<div class="index-page-awesome">

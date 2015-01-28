@@ -13,7 +13,11 @@
       <% end %>
       <%= "(#{@movie.year})" if @movie.year? %>
     </div>
-    <div class="movie-awesome-text">Кроме того, я считаю, что этот фильм...</div>
+    <div class="movie-stars-button-holder">
+      <div class="movie-stars-text">Моя оценка такова</div>
+      <%= render partial: 'reviews/star_rating_input' %>
+    </div>
+    <div class="movie-awesome-text left">Кроме того, я считаю, что этот фильм...</div>
     <%= render partial: 'reviews/buttons_rating', collection: @movie.reviews.where({user_id: session[:userid]}) %>
   </div>
   <div class="clear"></div>

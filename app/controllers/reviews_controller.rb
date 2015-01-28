@@ -4,7 +4,6 @@ class ReviewsController < ApplicationController
 
 	def index
 		authorize! :index, @review
-
 	end
 
 	def show
@@ -17,7 +16,7 @@ class ReviewsController < ApplicationController
 		if params[:awesome] 
 			params_to_update = { awesome: params[:awesome] }
 		elsif params[:stars]
-			params_to_update = { stars: params[:awesome] }
+			params_to_update = { stars: params[:stars] }
 		else
 			params_to_update = review_params
 		end

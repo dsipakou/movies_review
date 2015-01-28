@@ -1,0 +1,7 @@
+<div class="movie-stars-input right">
+	<ul>
+    <% (1..3).each do |i| %>
+    	<li data-review-id=<%= @review.id %> data-stars=<%= i %> class='movie-star-rating-input <%= 'on' unless i > @review.stars %>'></li>
+    <% end %>
+    </ul>
+</div>

@@ -38,6 +38,14 @@ module MainHelper
 		Review.where(movie_id: movie.id, awesome: 0).size
 	end
 
+	def get_rounded_stars(movie)
+		if Review.where(movie_id: movie.id, user_id: session[:userid]).present?
+      		Review.where(movie_id: movie.id).where("stars > 0").average(:stars)
+    	else
+      		0
+    	end
+	end
+
 	private
 	def get_awesome_amount(movie)
 		Review.where(movie_id: movie.id).where.not(awesome: nil)
