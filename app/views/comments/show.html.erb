@@ -33,7 +33,9 @@
   <% if @movie.comments.where({movie_id: params[:movie_id]}).size == 0 %>
   <i>Здесь пусто. Будь первым!</i>
   <% else %>
-  <div><%= render partial: "comments/inner", collection: @movie.comments.where({movie_id: params[:movie_id]}) %></div>
+  <div><%= render partial: "comments/inner", collection: @movie.comments.where({movie_id: params[:movie_id], parent_id: nil}), locals: { index: 0 } %></div>
   <% end %>
+  <div class="separator"></div>
+  <span>Новый комментарий</span>
   <%= render "comments/add_comment_form" %>
 </div>

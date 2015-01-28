@@ -20,8 +20,12 @@ window.addEvent('domready', function() {
 	commentsHandler.initComments();
 });
 
-commentForm = function(container) {
+commentForm = function(container, options) {
 	this.container = container;
+	this.options = options;
+	this.options.parent_id = options.parent_id;
+	this.options.user_id = options.user_id;
+	this.options.movie_id = options.movie_id; 
 	this.build();
 }
 
@@ -69,7 +73,22 @@ commentForm.prototype.hide = function() {
 }
 
 commentForm.prototype.build = function() {
-	this.container.innerHTML = "<textarea></textarea>";
+	this.container.addClass('hidden');
+	var iHTML = '<div class="reply-comment">\
+					<form action="/movies/{movie_id}/comments" method="post">\
+						<input type="hidden" value="{parent_id}" name="comment[parent_id]">\
+						<input type="hidden" value="{user_id}" name="comment[user_id]">\
+						<input type="hidden" value="{movie_id}" name="comment[movie_id]">\
+						<textarea class="comment-review-textbox" name="comment[content]"></textarea>\
+						<input type="submit" value="Ответить" name="commit" data-disable-with="Отвечаю...">\
+					</form>\
+				</div>'.substitute({
+			parent_id: this.options.parent_id,
+			user_id : this.options.user_id,
+			movie_id : this.options.movie_id,
+		}); 
+
+	this.container.innerHTML = iHTML;
 }
 
 commentsHandler = {
@@ -81,22 +100,29 @@ commentsHandler = {
 	},
 
 	initComment: function(comment_block) {
-		var comment_id = comment_block.getProperty('data-comment-id');
+		var parent_id = comment_block.getProperty('data-comment-id');
+		var user_id = comment_block.getProperty('data-user-id');
+		var movie_id = comment_block.getProperty('data-movie-id');
 		comment_block.getElements('.c_answer').addEvent('click', function() {
-			commentsHandler.toggleCommentForm(this, comment_id);
+			commentsHandler.toggleCommentForm(this, parent_id, user_id, movie_id);
 		})
 	},
 
 	new_comments_form : {},
 
-	toggleCommentForm : function(link, comment_id) {
+	toggleCommentForm : function(link, parent_id, user_id, movie_id) {
 		var comment_block = link.getParent('.comment-block');
-		if (commentsHandler.new_comments_form[comment_id]) {
-			commentsHandler.new_comments_form[comment_id].toggle();
+		if (commentsHandler.new_comments_form[parent_id]) {
+			commentsHandler.new_comments_form[parent_id].toggle();
 		} else {
-			var comment_place_holder = new Element('div', {text: "URAAAAAAAAAAAAAAAAAAAA"});
+			var comment_place_holder = new Element('div', {'style': 'zoom: 1;'});
 			comment_place_holder.inject(comment_block);
-			commentsHandler.new_comments_form[comment_id] = new commentForm(comment_place_holder);
+			commentsHandler.new_comments_form[parent_id] = new commentForm(comment_place_holder, {
+				parent_id : parent_id,
+				user_id : user_id,
+				movie_id : movie_id
+			});
+			commentsHandler.new_comments_form[parent_id].show();
 		}
 	}
 }

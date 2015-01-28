@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
     @last_user_review = User.find(@movie.reviews.where.not(content: nil).last.user_id) unless @movie.reviews.where.not(content: nil).last.nil?
     @track_times = TrackTimes.where({movie_id: @movie.id, user_id: session[:userid]})
     unless @track_times.size == 0
+      @last_login = @track_times.first.updated_at
       @track_times.first.update(comment_view_time: Time.now)
     else
       TrackTimes.new(movie_id: @movie.id, user_id: session[:userid], comment_view_time: Time.now).save
