@@ -10,7 +10,7 @@ class MainController < ApplicationController
 				@movies = Movie.order("created_at DESC").first(20)
 				@filter_title = "Последние добавленые"
 			when "2"
-				@movies = Movie.joins(:reviews).order('reviews.updated_at DESC').first(100000).uniq().first(20)
+				@movies = Movie.joins(:reviews).where("reviews.content <> '' OR reviews.stars <> '' OR reviews.awesome <> ''").order('reviews.updated_at DESC').first(100000).uniq().first(20)
 				@filter_title = "Последние рецензированые/оцененые"	
 			when "3"
 				@movies = Movie.joins(:comments).order('comments.updated_at DESC').first(100000).uniq().first(20)
