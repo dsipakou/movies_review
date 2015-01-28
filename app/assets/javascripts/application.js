@@ -61,9 +61,6 @@ commentForm.prototype.hide = function() {
 		onComplete : (function () {
 			this.container.addClass('hidden');
 			this.visible = false;
-			if (onComplete) {
-				onComplete();
-			}
 		}).bind(this)
 	});
 
