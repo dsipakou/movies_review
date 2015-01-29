@@ -4,7 +4,9 @@ class MainController < ApplicationController
 
   def index
   	authorize! :index, @movies
-  	if session[:view_filter]
+  	if session[:search_query]
+  		@movies = Movie.where("title LIKE ? OR orig_title LIKE ?", "%#{session[:search_query]}%", "%#{session[:search_query]}%")
+  	elsif session[:view_filter]
   		case session[:view_filter]
 			when "1"
 				@movies = Movie.order("created_at DESC").first(20)
