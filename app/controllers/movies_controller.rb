@@ -39,6 +39,10 @@ class MoviesController < ApplicationController
     end
   end
 
+  def set_view_options
+    
+  end
+
   # GET /movies/new
   def new
     @movie = Movie.new
