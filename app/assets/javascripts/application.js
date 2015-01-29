@@ -18,6 +18,7 @@
 window.addEvent('domready', function() {
 	ratingHandler.initRating();
 	commentsHandler.initComments();
+	commentToolbar.initToolbar();
 });
 
 commentForm = function(container, options) {
@@ -169,6 +170,17 @@ ratingHandler = {
 				$(temp).prevAll().addClass("on");
 			});
 		})
+	}
+}
+
+commentToolbar = {
+	initToolbar: function() {
+		var image_link = $$('a.comment-insert-image-link');
+		var textarea = $(image_link).next();
+		image_link.addEvent('click', function() {
+			textarea.focus();
+			textarea.value = "Test area test area test";
+		});
 	}
 }
 

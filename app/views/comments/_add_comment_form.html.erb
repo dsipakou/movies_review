@@ -1,6 +1,7 @@
 <%= form_for @comment do |f| %>
 	<%= f.hidden_field :user_id %>
 	<%= f.hidden_field :movie_id %>
+	<a class="comment-insert-image-link"><i>вставить картинку</i></a>
     <%= f.text_area :content, class: "comment-review-textbox" %>
     <%= f.submit "Готово", data: { disable_with: "Добавляю..." } %>
 <% end %>
