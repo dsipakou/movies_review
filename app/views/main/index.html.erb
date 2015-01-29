@@ -44,8 +44,10 @@
 							<td rowspan="2" class="top">
 								<div class="index-page-awesome">
 									<% if get_awesome_good_amount(movie) > 0 %>
-										<div class="index-medal"><%= image_tag ("medal.gif") %> 
-											<div class="count"><%= get_awesome_good_amount(movie) %></div>
+										<div class="index-medal">
+											<% (1..10).each do |i| %>
+												<%= image_tag ("medal.png"), class: "index-medal", style: "right: #{i * 10}px;" %>
+											<% end %>
 										</div>	
 									<% end %>
 									<% if get_awesome_bad_amount(movie) > 0 %>

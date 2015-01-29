@@ -247,11 +247,12 @@ a {
 .index-page-header {
 	margin-bottom: 5px;
 	border-bottom: 1px solid #e7e2c5;
-	font-size: 11px;
+	font-size: 13px;
 	line-height: 20px;
 
 	a.index-tab {
 		cursor:pointer;
+		border-bottom: none;
 	}
 
 	a:hover.index-tab {
@@ -447,7 +448,7 @@ a:hover {
 
 .index-page-movie-desc {
 	float: left;
-	#width: 456px;	
+	width: 100%;	
 
 	td.top {
 		vertical-align: top;
@@ -467,9 +468,10 @@ a:hover {
 	.index-page-awesome {
 
 		img.index-medal {
+			position: absolute;
 			height: 25px;
 			width: 25px;
-			position: relative;
+			
 		}
 
 		div.index-medal {
