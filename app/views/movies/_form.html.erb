@@ -23,7 +23,7 @@
     </tr>
     <tr>
       <td><%= f.hidden_field :user_id, value: session[:userid] %>
-      <%= f.submit %></td>
+      <%= f.submit "Сохранить", class: "button" %></td>
       <td>
       <%= link_to 'Я передумал', index_path, class: "cancel-link" %></td>  
     </tr>
