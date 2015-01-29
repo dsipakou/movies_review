@@ -10,10 +10,10 @@ class MainController < ApplicationController
 				@movies = Movie.order("created_at DESC").first(20)
 				@filter_title = "Последние добавленые"
 			when "2"
-				@movies = Movie.joins(:reviews).uniq.order('reviews.updated_at DESC').first(20)
+				@movies = Movie.joins(:reviews).group("reviews.movie_id").order('reviews.updated_at DESC').first(20)
 				@filter_title = "Последние рецензированые/оцененые"	
 			when "3"
-				@movies = Movie.joins(:comments).uniq.order('comments.updated_at DESC').first(20)
+				@movies = Movie.joins(:comments).order('comments.updated_at DESC').uniq().first(20)
 				@filter_title = "Последние комментируемые"
 			when "4"
 				@movies = Movie.joins(:reviews).where.not(reviews: {content: nil}).group("reviews.movie_id").order("count(reviews.movie_id) DESC").first(20)

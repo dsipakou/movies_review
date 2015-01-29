@@ -4,8 +4,8 @@
 			<a class="index-button-show-first left" onmouseover="$(this).next().show()" onmouseout="$(this).next().hide()"> <%= @filter_title  %> ▾</a>
 			<div class="index-show-first-options" style="display: none;" onmouseover="$(this).show()" onmouseout="$(this).hide()">
 				<%= link_to "Последние добавленые", "/filter/1" %><br>
-				<%= link_to "Последние рецензированые/оцененые", "/filter/2" %><br>
-				<%= link_to "Последние комментируемые", "/filter/3" %><br>
+				<!-- <%= link_to "Последние рецензированые/оцененые", "/filter/2" %><br>
+				<%= link_to "Последние комментируемые", "/filter/3" %><br> -->
 				<%= link_to "Самые рецинзируемые", "/filter/4" %><br>
 				<%= link_to "Сначала самые охуенные", "/filter/5" %>
 			</div>
