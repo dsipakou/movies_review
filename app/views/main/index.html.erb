@@ -51,8 +51,10 @@
 										</div>	
 									<% end %>
 									<% if get_awesome_bad_amount(movie) > 0 %>
-										<div class="index-medal"><%= image_tag ("shit.jpg"), class: "index-medal" %>
-											<div class="count"><%= get_awesome_bad_amount(movie) %></div>
+										<div class="index-medal">
+											<% (1..get_awesome_bad_amount(movie)).each do |i| %>
+												<%= image_tag ("huita.png"), class: "index-medal", style: "top: 30px; right: #{i * 10}px;" %>
+											<% end %>
 										</div>										
 									<% end %>
 								</div>
