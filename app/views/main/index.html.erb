@@ -45,7 +45,7 @@
 								<div class="index-page-awesome">
 									<% if get_awesome_good_amount(movie) > 0 %>
 										<div class="index-medal">
-											<% (1..10).each do |i| %>
+											<% (1..get_awesome_good_amount(movie)).each do |i| %>
 												<%= image_tag ("medal.png"), class: "index-medal", style: "right: #{i * 10}px;" %>
 											<% end %>
 										</div>	
