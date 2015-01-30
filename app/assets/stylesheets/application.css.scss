@@ -268,9 +268,10 @@ a {
 .header-logo {
 	margin: 5px 13px 0px 5px;
 	float: left;
-	a:hover {
-		text-decoration: none;
-	}
+
+}
+a.logo:hover {
+	text-decoration: none;
 }
 
 .header-search {

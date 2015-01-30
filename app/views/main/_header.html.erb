@@ -4,7 +4,7 @@
 			<li><%= User.find(session[:userid]).nickname %></li>
 			<li><strong><%= link_to 'Уйти отсюда', logout_path %></strong></li>
 		</ul>
-		<div class="header-logo"><%= link_to (image_tag ('small-logo.png')), index_path %></div>
+		<div class="header-logo"><%= link_to (image_tag ('small-logo.png')), index_path, class: "logo" %></div>
 		<div class="header-search">
 			<%= render 'main/search_form' %>
 		</div>
