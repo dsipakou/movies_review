@@ -13,7 +13,7 @@
         <% unless @movie.link.empty? %><%= link_to @movie.orig_title, @movie.link %>
         <% else %><%= @movie.orig_title %>
         <% end %>
-        (<%= @movie.year %>)
+        <%= "(#{@movie.year})" if @movie.year?%>
       </div>
     </div>
     <div class="clear"></div>
@@ -22,7 +22,7 @@
     <h2 class="h2-container h2-background">Последний отзыв таков</h2>
     <% unless @last_user_review.nil? %>
     <strong><%= @last_user_review.nickname %></strong>
-    <%= @movie.reviews.last.content[0..70].gsub(/\s\w+\s*$/,'...') %>
+    <%= @movie.reviews.where.not(content: nil).last.content[0..70].gsub(/\s\w+\s*$/,'...') %>
     <% else %>
     <i>А отзывов-то и нет</i>
     <% end %>
@@ -33,7 +33,9 @@
   <% if @movie.comments.where({movie_id: params[:movie_id]}).size == 0 %>
   <i>Здесь пусто. Будь первым!</i>
   <% else %>
-  <div><%= render partial: "comments/inner", collection: @movie.comments.where({movie_id: params[:movie_id]}) %></div>
+  <div><%= render partial: "comments/inner", collection: @movie.comments.where({movie_id: params[:movie_id], parent_id: nil}), locals: { index: 0 } %></div>
   <% end %>
+  <div class="separator"></div>
+  <span>Новый комментарий</span>
   <%= render "comments/add_comment_form" %>
 </div>

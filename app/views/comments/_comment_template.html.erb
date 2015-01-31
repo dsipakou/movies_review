@@ -1,0 +1,10 @@
+<div class="comment-block" data-comment-id=<%= inner.id %> data-movie-id=<%= inner.movie.id %> data-user-id=<%= session[:userid] %>>
+		<div class="comment-block-inner">
+			<div class="comment-body">
+				<%= inner.content %>
+			</div>
+			<footer>
+				Написал <%= User.find(inner.user_id).nickname %> <%= inner.updated_at.to_formatted_s(:short) %> <a class="c_answer" data-comment-id=<%= inner.id %>>ответить</a>
+			</footer>
+		</div>
+	</div>

@@ -1,0 +1,5 @@
+<div class="movie-awesome-buttons-holder">
+	<div class='button-review-good-bad <%= !buttons_rating.awesome.nil? && buttons_rating.awesome == false ? "left checked" : "left" %>' data-review-id='<%= buttons_rating.id %>' data-rating='0'><div class='tick'></div>Говно</div>
+	<div class='button-review-good-bad <%= buttons_rating.awesome == true ? "right checked" : "right" %>' data-review-id='<%= buttons_rating.id %>' data-rating='1'><div class='tick'></div>Охуенный</div>
+	<div class='button-review-good-bad <%= buttons_rating.awesome.nil? ? "cancel-awesome hidden" : "cancel-awesome" %>' data-review-id='<%= buttons_rating.id %>' data-rating="" data-type="clear-awesome" float="left"><a>Я передумал</a></div>
+</div>

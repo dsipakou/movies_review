@@ -1,12 +1,16 @@
 <div>
-	<div class="comment-block" data-comment-id=<%= inner.id %>>
-		<div class="comment-block-inner">
+	<div class="comment-block" data-comment-id=<%= inner.id %> data-movie-id=<%= inner.movie.id %> data-user-id=<%= session[:userid] %>>
+		<div class='comment-block-inner indent_<%= index > 8 ? 8 : index %> <%= 'red-border' if @last_login.nil? || inner.updated_at > @last_login %>'>
 			<div class="comment-body">
-				<%= inner.content %>
+				<%= raw(inner.content) %>
 			</div>
 			<footer>
-				<a class="c_icon" href="//leprosorium.ru/comments/1831776/#40979559">&nbsp;</a> Написал <%= User.find(inner.user_id).nickname %> <%= inner.updated_at.to_formatted_s(:short) %> <a class="c_answer" data-comment-id=<%= inner.id %>>ответить (сделаю)</a>
+				Написал <%= User.find(inner.user_id).nickname %> <%= inner.updated_at.to_formatted_s(:short) %> <a class="c_answer" data-comment-id=<%= inner.id %>>ответить</a>
 			</footer>
 		</div>
 	</div>
+	<% if Comment.where(parent_id: inner.id).size > 0 %>
+		<%= render partial: "comments/inner", collection: Comment.where(parent_id: inner.id), locals: {index: index + 1} %>
+	<% end %>
 </div>
+

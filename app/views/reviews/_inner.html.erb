@@ -1,0 +1,33 @@
+<% if inner.content? %>
+	<div class="review-wrapper">
+		<% unless User.find(inner.user_id).id == session[:userid] %>
+			<div>
+				<div class="review-author stacked"><%= User.find(inner.user_id).nickname %></div>
+				<% if !inner.stars.nil? && inner.stars > 0 %>
+					<div class="movie-stars">
+    					<ul>
+    					<% (1..3).each do |i| %>
+    						<li class='<%= 'on' unless i > inner.stars %>'></li>
+					    <% end %>
+    					</ul>
+					</div>
+				<% end %>
+				<% unless inner.awesome.nil? %>
+					<% if inner.awesome %>							
+						<div class="review-awesome-text good">охуенное кино</div>
+					<% else %>
+						<div class="review-awesome-text bad">фильм говно</div>
+					<% end %>
+				<% end %>
+				<div class="review-time"><%= inner.updated_at.to_formatted_s(:short) %></div>
+			</div>
+		<% end %>
+		<div class="review-content">
+			<%= inner.content %>
+		</div>
+		<% if inner.user_id == session[:userid] %>
+			<%= link_to "Хочу удалить это", inner, method: :delete, data: { confirm: "Хорошо ли ты подумал, друг?"}, class: "small-link" %>
+		<% end %>
+	</div>
+	<div class="review-separator"></div>
+<% end %>

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   root to: "main#index", as: :index
 
+  get 'filter/:id', to: "main#view_filter"
+
   get 'login', to: "login#index", as: :login
   post 'login', to: "login#attempt_login"
 

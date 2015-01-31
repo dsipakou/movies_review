@@ -12,23 +12,20 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 //= require mootools
 
 window.addEvent('domready', function() {
-	$("#user_star").click(function() {
-		$.ajax({
-			url: '/reviews/5',
-			method: "PATCH",
-			data: { rating: 3 }
-		});
-	});
+	ratingHandler.initRating();
 	commentsHandler.initComments();
 });
 
-commentForm = function(container) {
+commentForm = function(container, options) {
 	this.container = container;
+	this.options = options;
+	this.options.parent_id = options.parent_id;
+	this.options.user_id = options.user_id;
+	this.options.movie_id = options.movie_id; 
 	this.build();
 }
 
@@ -41,7 +38,7 @@ commentForm.prototype.toggle = function () {
 };
 
 commentForm.prototype.show = function() {
-	this.container.set('styles', {
+	/*this.container.set('styles', {
 		'overflow' : 'hidden',
 		'maxHeight' : 0
 	});
@@ -55,28 +52,44 @@ commentForm.prototype.show = function() {
 	});
 	this.container.morph({
 		'maxHeight' : 1000
-	}); 
+	});*/
+	//this.container.removeClass('hidden');
+	$(this.container).show(); 
 }
 
 commentForm.prototype.hide = function() {
-	this.container.set('morph', {
+	/*this.container.set('morph', {
 		duration : 222,
 		onComplete : (function () {
 			this.container.addClass('hidden');
 			this.visible = false;
-			if (onComplete) {
-				onComplete();
-			}
 		}).bind(this)
 	});
 
 	this.container.morph({
 		'maxHeight' : 0
-	}); 
+	}); */
+	//this.container.addClass('hidden');
+	$(this.container).hide();
 }
 
 commentForm.prototype.build = function() {
-	this.container.innerHTML = "<textarea></textarea>";
+	this.container.addClass('hidden');
+	var iHTML = '<div class="reply-comment">\
+					<form action="/movies/{movie_id}/comments" method="post">\
+						<input type="hidden" value="{parent_id}" name="comment[parent_id]">\
+						<input type="hidden" value="{user_id}" name="comment[user_id]">\
+						<input type="hidden" value="{movie_id}" name="comment[movie_id]">\
+						<textarea class="comment-review-textbox" name="comment[content]"></textarea>\
+						<input type="submit" value="Ответить" name="commit" data-disable-with="Отвечаю...">\
+					</form>\
+				</div>'.substitute({
+			parent_id: this.options.parent_id,
+			user_id : this.options.user_id,
+			movie_id : this.options.movie_id,
+		}); 
+
+	this.container.innerHTML = iHTML;
 }
 
 commentsHandler = {
@@ -88,23 +101,74 @@ commentsHandler = {
 	},
 
 	initComment: function(comment_block) {
-		var comment_id = comment_block.getProperty('data-comment-id');
+		var parent_id = comment_block.getProperty('data-comment-id');
+		var user_id = comment_block.getProperty('data-user-id');
+		var movie_id = comment_block.getProperty('data-movie-id');
 		comment_block.getElements('.c_answer').addEvent('click', function() {
-			commentsHandler.toggleCommentForm(this, comment_id);
+			commentsHandler.toggleCommentForm(this, parent_id, user_id, movie_id);
 		})
 	},
 
 	new_comments_form : {},
 
-	toggleCommentForm : function(link, comment_id) {
+	toggleCommentForm : function(link, parent_id, user_id, movie_id) {
 		var comment_block = link.getParent('.comment-block');
-		if (commentsHandler.new_comments_form[comment_id]) {
-			commentsHandler.new_comments_form[comment_id].toggle();
+		if (commentsHandler.new_comments_form[parent_id]) {
+			commentsHandler.new_comments_form[parent_id].toggle();
 		} else {
-			var comment_place_holder = new Element('div', {text: "URAAAAAAAAAAAAAAAAAAAA"});
+			var comment_place_holder = new Element('div', {'style': 'zoom: 1;'});
 			comment_place_holder.inject(comment_block);
-			commentsHandler.new_comments_form[comment_id] = new commentForm(comment_place_holder);
+			commentsHandler.new_comments_form[parent_id] = new commentForm(comment_place_holder, {
+				parent_id : parent_id,
+				user_id : user_id,
+				movie_id : movie_id
+			});
+			commentsHandler.new_comments_form[parent_id].show();
 		}
+	}
+}
+
+ratingHandler = {
+	initRating : function() {
+		ratingHandler.handleButtonReview();
+		ratingHandler.handleStarsReview();
+	},
+
+	handleButtonReview : function() {
+		var button_movie_review_block = $$('div.button-review-good-bad');
+		button_movie_review_block.addEvent('click', function() {
+			var temp = this;
+			$.ajax({
+				url: '/reviews/' + this.getProperty('data-review-id'),
+				method: "PATCH",
+				data: { awesome: this.getProperty('data-rating') }
+			}).done(function() {
+				$(temp).siblings().removeClass("checked");
+				temp.addClass("checked");
+				temp.getSiblings('[data-type="clear-awesome"]').removeClass('hidden')
+				if (temp.getProperty('data-rating') == "") {
+					$(temp).addClass("hidden");
+				} else {
+					$(temp).removeClass("hidden");
+				}
+			});
+		});
+	},
+
+	handleStarsReview: function() {
+		var star_movie_review_block = $$("li.movie-star-rating-input")
+		star_movie_review_block.addEvent('click', function() {
+			var temp = this;
+			$.ajax({
+				url: '/reviews/' + this.getProperty('data-review-id'),
+				method: "PATCH",
+				data: { stars: this.getProperty('data-stars') }
+			}).done(function() {
+				$(temp).siblings().removeClass("on");
+				temp.addClass("on");
+				$(temp).prevAll().addClass("on");
+			});
+		})
 	}
 }
 

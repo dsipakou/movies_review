@@ -1,0 +1,10 @@
+<div class="movie-stars stacked">
+    <ul>
+    <% (1..3).each do |i| %>
+    	<li class='<%= 'on' unless i > @rounded_stars %>'></li>
+    <% end %>
+    </ul>
+    <% if @rounded_stars > 0 %>
+    	<div class="stars-transscript right"><%= @rounded_stars %></div>
+    <% end %>
+</div>
