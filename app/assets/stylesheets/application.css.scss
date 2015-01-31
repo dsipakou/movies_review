@@ -78,6 +78,19 @@ a {
 	
 }
 
+.button {
+	background: -moz-linear-gradient(center top , #f3f3e7, #e7e2c5) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #907164;
+    border-radius: 5px;
+    box-shadow: 0 3px 3px #ddd;
+    color: #222;
+    display: inline-block;
+    font-weight: bold;
+    outline: 0 none;
+    padding: 0 1px;
+    white-space: nowrap;
+}
+
 .clear {
 	display: block;
 	clear: both;
@@ -234,7 +247,16 @@ a {
 .index-page-header {
 	margin-bottom: 5px;
 	border-bottom: 1px solid #e7e2c5;
-	line-height: 18px;
+	font-size: 11px;
+	line-height: 20px;
+
+	a.index-tab {
+		cursor:pointer;
+	}
+
+	a:hover.index-tab {
+		background-color: #eaead6;
+	}
 
 	.index-selected-tab {
 		background-color: #EFEFDF;
@@ -251,9 +273,9 @@ a {
 		border-top-left-radius: 3px;
 		border-top-right-radius: 3px;
 		color: #382110;
-		font-size: 11px;
 		margin: 0px 2px 0px 0px;
 		padding: 3px 20px;
+		padding-bottom: 4px;
 		font-weight: bold;
 	}
 
@@ -272,7 +294,6 @@ a {
 		border-top-right-radius: 3px;
 		color: #382110;
 		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-		font-size: 11px;
 		margin: 0px 2px 0px 0px;
 		padding: 3px 20px;
 		font-weight: bold;

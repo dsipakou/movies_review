@@ -81,7 +81,7 @@ commentForm.prototype.build = function() {
 						<input type="hidden" value="{user_id}" name="comment[user_id]">\
 						<input type="hidden" value="{movie_id}" name="comment[movie_id]">\
 						<textarea class="comment-review-textbox" name="comment[content]"></textarea>\
-						<input type="submit" value="Ответить" name="commit" data-disable-with="Отвечаю...">\
+						<input type="submit" value="Ответить" name="commit" class="button" data-disable-with="Отвечаю...">\
 					</form>\
 				</div>'.substitute({
 			parent_id: this.options.parent_id,

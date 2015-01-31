@@ -9,8 +9,10 @@
         <%= label_tag :password %>
         <%= password_field_tag :password, nil, id: "password", class: "b-text_input" %>
         &nbsp;
-        <%= submit_tag("Log in") %>
-        <%= link_to 'New User', new_user_path %>
+        <div style="margin-top: 10px;">
+            <%= submit_tag "Войти", class: "button left" %>
+            <%= link_to 'Регистрация', new_user_path, class: "right" %>
+        </div>
     <% end %>
   </div>
 </div>
