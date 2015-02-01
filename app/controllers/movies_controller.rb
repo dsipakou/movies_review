@@ -50,6 +50,7 @@ class MoviesController < ApplicationController
 
   # GET /movies/1/edit
   def edit
+    authorize! :edit, @movie
   end
 
   # POST /movies
