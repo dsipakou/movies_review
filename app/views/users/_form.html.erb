@@ -1,33 +1,42 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<div class="b-auth_container">
+  <div class="b-auth_form">
+    <div class="b-auth_form_bg"></div>
+    <span class="b-logo"><%= image_tag ('logo.png') %></span>
+      <%= form_for(@user) do |f| %>
+        <% if @user.errors.any? %>
+          <div id="error_explanation">
+            <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <div class="field">
+          <%= f.label :username, "username (это твой логин для входа)", for: :username %><br>
+          <%= f.text_field :username, class: "b-text_input" %>
+        </div>
+        <br>
+        <div class="field">
+          <%= f.label :nickname, "nickname (так тебя будут звать на сайте)" %><br>
+          <%= f.text_field :nickname, class: "b-text_input" %>
+        </div>
+        <br>
+        <div class="field">
+          <%= f.label :password, "Пароль, тут нехуй объяснять" %><br>
+          <%= f.password_field :password, class: "b-text_input" %>
+        </div>
+        <br>
+        <div>
+          <%= label_tag 'Ну и инвайт, пожалуйста' %><br>
+          <%= text_field_tag 'invite', nil, class: "b-text_input" %>
+        </div>
+        <br>
+        <div class="actions">
+          <%= f.submit "Регистрируюсь!" %>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
+  </div>
+</div>
 
-  <div class="field">
-    <%= f.label :username %><br>
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-    <%= f.label :nickname %><br>
-    <%= f.text_field :nickname %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
-  </div>
-  <div>
-    <%= label_tag 'Ваш инвайт, пожалуйста' %><br>
-    <%= text_field_tag 'invite' %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
