@@ -5,12 +5,14 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
+    authorize! :index, @comments
     @comments = Comment.all
   end
 
   # GET /comments/1
   # GET /comments/1.json
   def show
+    authorize! :show, @comments
     @comments = Comment.where({movie_id: params[:movie_id]})
     @movie = Movie.where({id: params[:movie_id]}).first
     @comment = Comment.new(:movie_id => @movie.id, :user_id => session[:userid])
@@ -26,11 +28,13 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
+    authorize! :new, @comment
     @comment = Comment.new
   end
 
   # GET /comments/1/edit
   def edit
+    authorize! :edit, @comments
   end
 
   # POST /comments
