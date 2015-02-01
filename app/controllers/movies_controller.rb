@@ -44,6 +44,7 @@ class MoviesController < ApplicationController
 
   # GET /movies/new
   def new
+    authorize! :index, @movie
     @movie = Movie.new
   end
 
