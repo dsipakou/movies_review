@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :movies, :users, :reviews
+  resources :movies, :users, :reviews, :posts
 
   root to: "main#index", as: :index
 
-  post 'search', to: "search#search"
+    post 'search', to: "search#search"
 
   get 'filter/:id', to: "main#view_filter"
 

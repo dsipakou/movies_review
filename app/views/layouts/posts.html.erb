@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MovieReview</title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<%= render 'posts/header' %>
+	<div class="main-container">
+		<div class="main-container-float">
+			<%= yield %>
+		</div>
+	</div>
+	<%= render 'main/footer' %>
+</body>
+</html>
