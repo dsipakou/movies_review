@@ -28,12 +28,13 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    invite = Invite.where({body: params[:invite], used: false})
     respond_to do |format|
-      if @user.save
+      if @user.save && invite.size > 0
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
+        @user.errors.add(:base, "Инвайт уже всё, или он не правильный") if invite.size == 0
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
