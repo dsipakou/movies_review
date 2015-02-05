@@ -56,6 +56,7 @@ commentForm.prototype.show = function() {
 	});*/
 	//this.container.removeClass('hidden');
 	$(this.container).show(); 
+	commentToolbar.initToolbar();
 }
 
 commentForm.prototype.hide = function() {
@@ -81,6 +82,7 @@ commentForm.prototype.build = function() {
 						<input type="hidden" value="{parent_id}" name="comment[parent_id]">\
 						<input type="hidden" value="{user_id}" name="comment[user_id]">\
 						<input type="hidden" value="{movie_id}" name="comment[movie_id]">\
+						<a class="comment-insert-image-link"><i>вставить картинку</i></a>\
 						<textarea class="comment-review-textbox" name="comment[content]"></textarea>\
 						<input type="submit" value="Ответить" name="commit" class="button" data-disable-with="Отвечаю...">\
 					</form>\
@@ -176,10 +178,16 @@ ratingHandler = {
 commentToolbar = {
 	initToolbar: function() {
 		var image_link = $$('a.comment-insert-image-link');
-		var textarea = $(image_link).next();
+		
+
+
+
 		image_link.addEvent('click', function() {
-			textarea.focus();
-			textarea.value = "Test area test area test";
+			var txtarea = image_link.getNext('.comment-review-textbox');
+			var link = prompt("Ссылка на картинку");
+			if (link) {
+				$(txtarea).val($(txtarea).val() + "<img src=\"" + link + "\"></img>");
+			}
 		});
 	}
 }

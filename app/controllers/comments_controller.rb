@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   layout "comment"
+  before_filter :modify_content, :only => [:create, :update]
   #before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   # GET /comments
@@ -83,5 +84,11 @@ class CommentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
       params.require(:comment).permit(:movie_id, :parent_id, :user_id, :content)
+    end
+
+    def modify_content
+      #params[:comment][:content].gsub(/(\r)?\n/, '<br />') unless params[:comment][:content].nil?
+      params[:comment][:content] = params[:comment][:content].gsub(/(\r)?\n/, '<br />').gsub('<img', '<br /><img').gsub('/img>', '/img><br />') unless params[:comment][:content].nil?
+
     end
 end
