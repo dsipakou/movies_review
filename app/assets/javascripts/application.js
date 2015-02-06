@@ -25,8 +25,21 @@ commentForm = function(container, options) {
 	this.container = container;
 	this.options = options;
 	this.options.parent_id = options.parent_id;
+	if (options.post_id == null) {
+		this.options.id = options.movie_id
+	} else {
+		this.options.id = options.post_id
+	}
 	this.options.user_id = options.user_id;
-	this.options.movie_id = options.movie_id; 
+	if (this.options.movie_id == null) {
+		this.options.type = "post_"
+		this.options.prefix = "post_"
+		this.options.link = "posts"
+	} else {
+		this.options.type = "movie_"
+		this.options.prefix = ""
+		this.options.link = "movies"
+	}
 	this.build();
 }
 
@@ -56,7 +69,6 @@ commentForm.prototype.show = function() {
 	});*/
 	//this.container.removeClass('hidden');
 	$(this.container).show(); 
-	commentToolbar.initToolbar();
 }
 
 commentForm.prototype.hide = function() {
@@ -78,18 +90,21 @@ commentForm.prototype.hide = function() {
 commentForm.prototype.build = function() {
 	this.container.addClass('hidden');
 	var iHTML = '<div class="reply-comment">\
-					<form action="/movies/{movie_id}/comments" method="post">\
-						<input type="hidden" value="{parent_id}" name="comment[parent_id]">\
-						<input type="hidden" value="{user_id}" name="comment[user_id]">\
-						<input type="hidden" value="{movie_id}" name="comment[movie_id]">\
+					<form action="/{link}/{id}/comments" method="post">\
+						<input type="hidden" value="{parent_id}" name="{prefix}comment[parent_id]">\
+						<input type="hidden" value="{user_id}" name="{prefix}comment[user_id]">\
+						<input type="hidden" value="{id}" name="{prefix}comment[{type}id]">\
 						<a class="comment-insert-image-link"><i>вставить картинку</i></a>\
-						<textarea class="comment-review-textbox" name="comment[content]"></textarea>\
+						<textarea class="comment-review-textbox" name="{prefix}comment[content]"></textarea>\
 						<input type="submit" value="Ответить" name="commit" class="button" data-disable-with="Отвечаю...">\
 					</form>\
 				</div>'.substitute({
+			type : this.options.type,
 			parent_id: this.options.parent_id,
 			user_id : this.options.user_id,
-			movie_id : this.options.movie_id,
+			id : this.options.id,
+			prefix : this.options.prefix,
+			link : this.options.link,
 		}); 
 
 	this.container.innerHTML = iHTML;
@@ -107,14 +122,18 @@ commentsHandler = {
 		var parent_id = comment_block.getProperty('data-comment-id');
 		var user_id = comment_block.getProperty('data-user-id');
 		var movie_id = comment_block.getProperty('data-movie-id');
+		var post_id = comment_block.getProperty('data-post-id');
 		comment_block.getElements('.c_answer').addEvent('click', function() {
-			commentsHandler.toggleCommentForm(this, parent_id, user_id, movie_id);
-		})
+			commentsHandler.toggleCommentForm(this, parent_id, user_id, movie_id, null);
+		});
+		comment_block.getElements('.c_post_answer').addEvent('click', function() {
+			commentsHandler.toggleCommentForm(this, parent_id, user_id, null, post_id);
+		});
 	},
 
 	new_comments_form : {},
 
-	toggleCommentForm : function(link, parent_id, user_id, movie_id) {
+	toggleCommentForm : function(link, parent_id, user_id, movie_id, post_id) {
 		var comment_block = link.getParent('.comment-block');
 		if (commentsHandler.new_comments_form[parent_id]) {
 			commentsHandler.new_comments_form[parent_id].toggle();
@@ -124,7 +143,8 @@ commentsHandler = {
 			commentsHandler.new_comments_form[parent_id] = new commentForm(comment_place_holder, {
 				parent_id : parent_id,
 				user_id : user_id,
-				movie_id : movie_id
+				movie_id : movie_id,
+				post_id : post_id
 			});
 			commentsHandler.new_comments_form[parent_id].show();
 		}
@@ -178,17 +198,17 @@ ratingHandler = {
 commentToolbar = {
 	initToolbar: function() {
 		var image_link = $$('a.comment-insert-image-link');
-		
-
-
-
 		image_link.addEvent('click', function() {
-			var txtarea = image_link.getNext('.comment-review-textbox');
-			var link = prompt("Ссылка на картинку");
-			if (link) {
-				$(txtarea).val($(txtarea).val() + "<img src=\"" + link + "\"></img>");
-			}
+			commentToolbar.insertLink(image_link);
 		});
+	},
+
+	insertLink: function(element) {
+		var txtarea = element.getNext('.comment-review-textbox');
+		var link = prompt("Ссылка на картинку");
+		if (link) {
+			$(txtarea).val($(txtarea).val() + "<img src=\"" + link + "\"></img>");
+		}
 	}
 }
 

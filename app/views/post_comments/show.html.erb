@@ -1,0 +1,23 @@
+<div class="main-container-float">
+  <div class="post-full-container">
+    <!-- <p id="notice">
+    <%= notice %>
+    </p> -->
+    <div class="stacked"><%= link_to 'Назад', posts_path, class: "action-link" %></div>
+    <div class="movie-main-content col last">
+      <%= raw(@post.content) %>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<div class="comment-main-container">
+  <header class="comment-header">Комментарии</header>
+  <% if @post.post_comments.where({post_id: params[:post_id]}).size == 0 %>
+  <i>Здесь пусто. Будь первым!</i>
+  <% else %>
+  <div><%= render partial: "post_comments/inner", collection: @post.post_comments.where({post_id: params[:post_id], parent_id: nil}), locals: { index: 0 } %></div>
+  <% end %>
+  <div class="separator"></div>
+  <span>Новый комментарий</span>
+  <%= render "post_comments/add_comment_form" %>
+</div>

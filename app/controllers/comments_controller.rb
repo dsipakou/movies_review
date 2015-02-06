@@ -87,8 +87,6 @@ class CommentsController < ApplicationController
     end
 
     def modify_content
-      #params[:comment][:content].gsub(/(\r)?\n/, '<br />') unless params[:comment][:content].nil?
       params[:comment][:content] = params[:comment][:content].gsub(/(\r)?\n/, '<br />').gsub('<img', '<br /><img').gsub('/img>', '/img><br />') unless params[:comment][:content].nil?
-
     end
 end

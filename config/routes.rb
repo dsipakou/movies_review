@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :movies, :users, :reviews
+  resources :movies, :users, :reviews, :posts
 
   root to: "main#index", as: :index
 
-  post 'search', to: "search#search"
+    post 'search', to: "search#search"
 
   get 'filter/:id', to: "main#view_filter"
 
@@ -18,6 +18,11 @@ Rails.application.routes.draw do
   controller :comments do
     get 'movies/:movie_id/comments', to: "comments#show", as: :comments
     post 'movies/:movie_id/comments', to: "comments#create"
+  end
+
+  controller :post_comments do
+    get 'posts/:post_id/comments', to: "post_comments#show", as: :post_comments
+    post 'posts/:post_id/comments', to: "post_comments#create"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

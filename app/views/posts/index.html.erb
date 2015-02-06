@@ -1,0 +1,43 @@
+<div class="post-full-container right-border">
+	<div class="index-page-header", style="margin-bottom: 20px;">
+		<%= link_to "Фильмы", index_path, class: "index-tab" %>
+		<%= link_to "Посты", posts_path, class: "index-selected-tab" %>
+	</div>
+	<div>
+		<!-- <a class="index-button-show-first left" onmouseover="$(this).next().show()" onmouseout="$(this).next().hide()"> <%= @filter_title  %> ▾</a>
+		<div class="index-show-first-options" style="display: none;" onmouseover="$(this).show()" onmouseout="$(this).hide()">
+			<%= link_to "Последние добавленые", "/filter/1" %><br>
+			<%= link_to "Последние рецензированые/оцененые", "/filter/2" %><br>
+			<%= link_to "Последние комментируемые", "/filter/3" %><br>
+			<%= link_to "Самые рецинзируемые", "/filter/4" %><br>
+			<%= link_to "Сначала самые охуенные", "/filter/5" %>
+		</div> -->
+	</div>
+	<table class="index-page-table">
+		<% if @posts %><% @posts.each do |post| %>
+		<tr>
+			<td class="index-page-td-with-border">
+				<div class="index-page-movie-desc">
+					<table>
+						<tr>
+							<td class="top">
+								<%= raw(post.content) %>
+							</td>
+						</tr>
+						<tr>
+							<td class="bottom half">
+								<footer>
+									Написал <%= User.find(post.user_id).nickname %> <%= post.created_at.to_formatted_s(:short) %> <i>&nbsp; &nbsp;<%= link_to raw("Комментариев #{get_all_post_comments_amount(post)} | #{get_new_post_comments_amount(post)}"), post_comments_path(post.id)%></i>
+								</footer>		
+							</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<% end %> <% end %>
+	</table>
+</div>

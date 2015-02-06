@@ -1,0 +1,15 @@
+<div>
+	<div class="comment-block" data-comment-id=<%= inner.id %> data-post-id=<%= inner.post.id %> data-user-id=<%= session[:userid] %>>
+		<div class='comment-block-inner indent_<%= index > 8 ? 8 : index %> <%= 'red-border' if @last_login.nil? || inner.updated_at > @last_login %>'>
+			<div class="comment-body">
+				<%= raw(inner.content) %>
+			</div>
+			<footer>
+				Написал <%= User.find(inner.user_id).nickname %> <%= inner.updated_at.to_formatted_s(:short) %> <a class="c_post_answer" data-comment-id=<%= inner.id %>>ответить</a>
+			</footer>
+		</div>
+	</div>
+	<% if PostComment.where(parent_id: inner.id).size > 0 %>
+		<%= render partial: "post_comments/inner", collection: PostComment.where(parent_id: inner.id), locals: {index: index + 1} %>
+	<% end %>
+</div>

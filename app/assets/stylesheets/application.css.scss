@@ -534,6 +534,12 @@ a:hover {
   	}
 }
 
+.post-full-container {
+	float: left;
+	width: 925px;
+	padding-right: 10px;
+}
+
 // Movie details page start
 .movie-title {
 	margin-bottom: 0;
@@ -721,7 +727,7 @@ a:hover {
 }
 
 .comment-block-inner {
-	padding: 5px 5px 1px 5px;
+	padding: 5px;
 	zoom: 1;
 	outline-offset: -1px;
 	margin-right: 1px;
