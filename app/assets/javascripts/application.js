@@ -67,7 +67,12 @@ commentForm.prototype.show = function() {
 	this.container.morph({
 		'maxHeight' : 1000
 	});*/
-	//this.container.removeClass('hidden');
+	this.container.removeClass('hidden');
+	var image_link = this.container.getElement('a.comment-insert-image-link');
+		image_link.addEvent('click', function() {
+			commentToolbar.insertLink(image_link);
+		});
+	this.container.removeClass('hidden');
 	$(this.container).show(); 
 }
 
@@ -83,7 +88,10 @@ commentForm.prototype.hide = function() {
 	this.container.morph({
 		'maxHeight' : 0
 	}); */
-	//this.container.addClass('hidden');
+	var image_link = this.container.getElement('a.comment-insert-image-link');
+		image_link.removeEvents('click');
+	this.container.addClass('hidden');
+	
 	$(this.container).hide();
 }
 
