@@ -4,12 +4,12 @@
 			<li><%= User.find(session[:userid]).nickname %></li>
 			<li><strong><%= link_to 'Уйти отсюда', logout_path %></strong></li>
 		</ul>
-		<div class="header-logo"><%= link_to (image_tag ('small-logo.png')), index_path, class: "logo" %></div>
+		<div class="header-logo"><%= link_to (image_tag ('small-logo.png')), posts_path, class: "logo" %></div>
 		<div class="header-search">
 			<%= render 'main/search_form' %>
 		</div>
 		<ul class="header-site-nav header-nav">
-			<li><strong><%= link_to 'Написать новый пост', new_movie_path %></strong></li>
+			<li><strong><%= link_to 'Написать новый пост', new_post_path %></strong></li>
 		</ul>
 	</section>
 </header>

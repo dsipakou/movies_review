@@ -20,6 +20,11 @@ Rails.application.routes.draw do
     post 'movies/:movie_id/comments', to: "comments#create"
   end
 
+  controller :post_comments do
+    get 'posts/:post_id/comments', to: "post_comments#show", as: :post_comments
+    post 'posts/:post_id/comments', to: "post_comments#create"
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

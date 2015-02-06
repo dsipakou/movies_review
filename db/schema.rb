@@ -11,16 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202210327) do
+ActiveRecord::Schema.define(version: 20150206102053) do
 
   create_table "comments", force: true do |t|
     t.integer  "movie_id"
-    t.integer  "parent_id"
     t.integer  "user_id"
+    t.integer  "parent_id"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "comments", ["movie_id"], name: "index_comments_on_movie_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "invites", force: true do |t|
     t.integer  "user_id"
@@ -43,6 +46,29 @@ ActiveRecord::Schema.define(version: 20150202210327) do
     t.datetime "updated_at"
   end
 
+  create_table "post_comments", force: true do |t|
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.integer  "parent_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "post_comments", ["post_id"], name: "index_post_comments_on_post_id", using: :btree
+  add_index "post_comments", ["user_id"], name: "index_post_comments_on_user_id", using: :btree
+
+  create_table "post_track_times", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "view_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "post_track_times", ["post_id"], name: "index_post_track_times_on_post_id", using: :btree
+  add_index "post_track_times", ["user_id"], name: "index_post_track_times_on_user_id", using: :btree
+
   create_table "posts", force: true do |t|
     t.integer  "user_id"
     t.text     "content"
@@ -61,6 +87,9 @@ ActiveRecord::Schema.define(version: 20150202210327) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "reviews", ["movie_id"], name: "index_reviews_on_movie_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "track_times", force: true do |t|
     t.integer  "user_id"

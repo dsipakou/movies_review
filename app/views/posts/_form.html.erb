@@ -1,0 +1,23 @@
+<%= form_for(@post) do |f| %>
+<div class="movie-left-container">
+  <%= f.hidden_field :user_id, value: session[:userid] %>
+  <a class="comment-insert-image-link"><i>вставить картинку</i></a>
+  <%= f.text_area :content, class: "comment-review-textbox" %>
+  <%= f.submit "Готово", class: "button", data: { disable_with: "Добавляю..." } %>
+  <%= link_to 'Я передумал', posts_path, class: "cancel-link right bold" %></td>  
+</div>
+<div class="movie-right-container">
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <span class="small">Пустой пост - грустный пост</span>
+</div>
+<% end %>
