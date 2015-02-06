@@ -26,7 +26,7 @@
 						</tr>
 						<tr>
 							<td class="bottom half">
-								<footer>
+								<footer style="margin-top: 20px;">
 									Написал <%= User.find(post.user_id).nickname %> <%= post.created_at.to_formatted_s(:short) %> <i>&nbsp; &nbsp;<%= link_to raw("Комментариев #{get_all_post_comments_amount(post)} | #{get_new_post_comments_amount(post)}"), post_comments_path(post.id)%></i>
 								</footer>		
 							</td>
