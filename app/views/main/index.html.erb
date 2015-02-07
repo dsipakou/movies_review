@@ -79,5 +79,10 @@
 	</table>
 </div>
 <div class="movie-right-container">
-	<h2 class="h2-container h2-background no-top-margin">Фильтр (сделаю)</h2>
+	<h2 class="h2-container h2-background no-top-margin">Фильтр</h2>
+	<% if session[:search_query] %>
+		<div><strong>Ищем вот это:</strong></div>
+		<%= link_to "#{session[:search_query]} [удалить]", '?clear_filter=true', class: "filter-link" %>
+	<% end %>
+	<%= params[:clear_filter]%>
 </div>

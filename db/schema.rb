@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(version: 20150206102053) do
   create_table "reviews", force: true do |t|
     t.integer  "movie_id"
     t.integer  "user_id"
-    t.text     "content",    limit: 16777215
-    t.integer  "stars"
+    t.text     "content"
+    t.integer  "stars",      default: 0
     t.boolean  "awesome"
     t.datetime "created_at"
     t.datetime "updated_at"
