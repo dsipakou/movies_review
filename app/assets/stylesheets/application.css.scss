@@ -937,3 +937,10 @@ a:hover {
 .reply-comment {
 	margin-top: 15px;
 }
+
+a.filter-link {
+	text-decoration: none;
+}
+a.filter-link:hover {
+	text-decoration: line-through;
+}

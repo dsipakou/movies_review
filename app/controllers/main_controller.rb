@@ -31,6 +31,10 @@ class MainController < ApplicationController
   		@movies = Movie.order("updated_at DESC").first(20);
   		@filter_title = "Последние добавленые"
   	end
+  	if params[:clear_filter]
+  		session[:search_query] = nil
+  		redirect_to index_path
+  	end
   end
 
   def view_filter
