@@ -47,7 +47,7 @@ module MainHelper
 	end
 
 	def get_stars_count(movie)
-		Review.where(movie_id: movie.id, user_id: session[:userid]).size
+		Review.where(movie_id: movie.id).where("stars > 0").size
 	end
 
 	private
