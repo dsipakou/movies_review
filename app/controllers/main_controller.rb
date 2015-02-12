@@ -28,8 +28,8 @@ class MainController < ApplicationController
 				@filter_title = "Последние рецензированые/оцененные"
 			end
   	else
-  		@movies = Movie.order("updated_at DESC").first(20);
-  		@filter_title = "Последние добавленые"
+  		@movies = Movie.joins(:reviews).where("reviews.content <> '' OR reviews.stars <> '' OR reviews.awesome <> ''").order('reviews.updated_at DESC').first(100000).uniq().first(20)
+		@filter_title = "Последние рецензированые/оцененные"
   	end
   	if params[:clear_filter]
   		session[:search_query] = nil
