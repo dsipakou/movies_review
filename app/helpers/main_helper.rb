@@ -46,6 +46,10 @@ module MainHelper
     	end
 	end
 
+	def get_stars_count(movie)
+		Review.where(movie_id: movie.id, user_id: session[:userid]).size
+	end
+
 	private
 	def get_awesome_amount(movie)
 		Review.where(movie_id: movie.id).where.not(awesome: nil)
