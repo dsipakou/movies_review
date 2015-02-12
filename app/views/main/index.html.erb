@@ -48,14 +48,14 @@
 									<% if get_awesome_good_amount(movie) > 0 %>
 										<div class="index-medal">
 											<% (1..get_awesome_good_amount(movie)).each do |i| %>
-												<%= image_tag ("medal.png"), class: "index-medal", style: "right: #{i * 10}px;", alt: "Сколько же пацанов считает, что фильм охуенент? Вот сколько - #{get_awesome_good_amount(movie)}!" %>
+												<%= image_tag ("medal.png"), class: "index-medal", style: "right: #{i * 10}px;", title: "Сколько же пацанов считает, что фильм охуенент? Вот сколько - #{get_awesome_good_amount(movie)}!" %>
 											<% end %>
 										</div>	
 									<% end %>
 									<% if get_awesome_bad_amount(movie) > 0 %>
 										<div class="index-medal">
 											<% (1..get_awesome_bad_amount(movie)).each do |i| %>
-												<%= image_tag ("huita.png"), class: "index-medal", style: "top: 30px; right: #{i * 10}px;", alt: "Сколько же пацанов считает, что фильм говно? Вот сколько - #{get_awesome_bad_amount(movie)}!" %>
+												<%= image_tag ("huita.png"), class: "index-medal", style: "top: 30px; right: #{i * 10}px;", title: "Сколько же пацанов считает, что фильм говно? Вот сколько - #{get_awesome_bad_amount(movie)}!" %>
 											<% end %>
 										</div>										
 									<% end %>
