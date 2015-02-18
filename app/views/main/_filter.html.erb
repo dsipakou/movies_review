@@ -1,0 +1,10 @@
+<% unless @years.nil? %>	
+	<%= form_tag ("/year") do %>
+		<%= select_tag "year", options_from_collection_for_select(@years, "id", "year"), prompt: "Хочу выбрать год", class: "index-year-select" %>
+	<% end %>
+<% end %>
+<% if session[:search_query] %>
+	<div><strong>Ищем вот это:</strong></div>
+	<%= link_to "#{session[:search_query]} [удалить]", '?clear_filter=true', class: "filter-link" %>
+<% end %>
+<%= params[:clear_filter]%>

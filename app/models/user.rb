@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
 	def admin?(username)
 		#self.username.to_sym == username
 	end
+
+	def self.get_review_last_view_time(movie)
+		self.find(movie.reviews.where.not(content: nil).last.user_id) unless movie.reviews.where.not(content: nil).last.nil?	
+	end
 end

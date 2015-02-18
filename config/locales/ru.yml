@@ -1,4 +1,54 @@
 ru:
+  general:
+    header:
+      logout: "Уйти отсюда"
+      new_movie: "Добавить фильм"
+      new_post: "Написать новый пост"
+      movies_tab: "Фильмы"
+      posts_tab: "Посты"
+    crud:
+      show: "Посмореть"
+      edit: "Изменить"
+      back: "Назад"
+      delete: "Удалить"
+      delete_confirm: "Точно удалить? На 100%?"
+  posts:
+    form:
+      insert_image: "вставить картинку"
+      add_in_progress: "Добавляю..."
+      submit: "Готово"
+      cancel: "Я передумал"
+      empty_post: "Пустой пост - грустный пост"
+    new:
+      title: "Новый пост буду делать"
+  reviews:
+    inner:
+      awesome_movie: "охуенное кино"
+      shit_movie: "фильм говно"
+      delete_review: "Хочу удалить это"
+      delete_confirm: "Хорошо ли ты подумал, друг?"
+    buttons_rating:
+      awesome: "Охуенный"
+      shit: "Говно"
+      cancel: "Я передумал"
+  time:
+    formats:
+      default: "%d %B %Y в %H:%M"
+      short: "%d %b %H:%M"
+  users:
+    form:
+      username: "username (это твой логин для входа)"
+      nickname: "nickname (так тебя будут звать на сайте)"
+      password: "Пароль, тут нехуй объяснять"
+      invite: "Ну и инвайт, пожалуйста"
+      register: "Регистрируюсь!"
+    index:
+      username: "username чувака"
+      nickname: "nickname чувака"
+    show: 
+      username: "username (логин)"
+      nickname: "nickname (на сайте)"
+      password: "Пароль (ты серьёзно?)"
   date:
-    month_names: [~, Январь, Февраль, Март, Апрель, Май, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь]
-    abbr_month_names: [~, Янв, Фев, Март, Апр, Май, Июнь, Июль, Авг, Сен, Окт, Ноя, Дек]
+    month_names: [~, января, февраля, марта, апреля, мая, июня, июля, фвгуста, сентября, октября, ноября, декабря]
+    abbr_month_names: [~, янв, фев, марта, апр, мая, июня, июля, авг, сен, окт, ноя, дек]

@@ -1,19 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Username:</strong>
+  <strong><%= t(".username") %></strong>
   <%= @user.username %>
 </p>
 
 <p>
-  <strong>Nickname:</strong>
+  <strong><%= t(".nickname") %></strong>
   <%= @user.nickname %>
 </p>
 
 <p>
-  <strong>Password:</strong>
+  <strong><%= t(".password") %></strong>
   <%= @user.password %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', login_path %>
+<%= link_to t("general.crud.edit"), edit_user_path(@user) %> |
+<%= link_to t("general.crud.back"), login_path %>

@@ -14,19 +14,19 @@
 				<% end %>
 				<% unless inner.awesome.nil? %>
 					<% if inner.awesome %>							
-						<div class="review-awesome-text good">охуенное кино</div>
+						<div class="review-awesome-text good"><%= t(".awesome_movie") %></div>
 					<% else %>
-						<div class="review-awesome-text bad">фильм говно</div>
+						<div class="review-awesome-text bad"><%= t(".shit_movie") %></div>
 					<% end %>
 				<% end %>
-				<div class="review-time"><%= inner.updated_at.to_formatted_s(:short) %></div>
+				<div class="review-time"><%= l inner.updated_at %></div>
 			</div>
 		<% end %>
 		<div class="review-content">
 			<%= inner.content %>
 		</div>
 		<% if inner.user_id == session[:userid] %>
-			<%= link_to "Хочу удалить это", inner, method: :delete, data: { confirm: "Хорошо ли ты подумал, друг?"}, class: "small-link" %>
+			<%= link_to t(".delete_review"), inner, method: :delete, data: { confirm: t(".delete_confirm")}, class: "small-link" %>
 		<% end %>
 	</div>
 	<div class="review-separator"></div>

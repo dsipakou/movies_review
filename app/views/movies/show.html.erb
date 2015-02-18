@@ -46,7 +46,7 @@
   <% unless @movie.comments.last.nil? %>
   <%= @movie.comments.last.content  %>
     <footer>
-        Написал <%= User.find(@movie.comments.last.user_id).nickname %> <%= @movie.comments.last.updated_at.to_formatted_s(:short) %>
+        Написал <%= User.find(@movie.comments.last.user_id).nickname %> <%= l @movie.comments.last.updated_at, format: :short %>
     </footer>
   <% else %>
   <i>Никто не писал комментариев</i>
