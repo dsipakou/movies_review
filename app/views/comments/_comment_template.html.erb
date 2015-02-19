@@ -4,7 +4,7 @@
 				<%= inner.content %>
 			</div>
 			<footer>
-				Написал <%= User.find(inner.user_id).nickname %> <%= inner.updated_at %> <a class="c_answer" data-comment-id=<%= inner.id %>>ответить</a>
+				<%= t(".wrote") %> <%= User.find(inner.user_id).nickname %> <%= inner.updated_at %> <a class="c_answer" data-comment-id=<%= inner.id %>><%= t(".answer") %></a>
 			</footer>
 		</div>
 	</div>

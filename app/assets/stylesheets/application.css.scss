@@ -1001,3 +1001,18 @@ a.filter-link {
 a.filter-link:hover {
 	text-decoration: line-through;
 }
+
+#error_explanation {
+	margin-top: 20px;
+	font-weight: bold;
+	color: #382110;
+	text-align: left; 
+	font-size: 14px;
+	span {
+		font-weight: normal;	
+	}
+}
+
+.field_with_errors {
+	color: red;
+}

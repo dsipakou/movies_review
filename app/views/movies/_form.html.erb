@@ -30,21 +30,19 @@
   </table>
 </div>
 <div class="movie-right-container">
-  <% if @movie.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
-
-      <ul>
-      <% @movie.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  
   <% if @movie.image && !@movie.image.empty? %>
     <h2 class="h2-container h2-background no-top-margin"><%= t(".current_image") %></h2>
     <%= image_tag ("posters/" + @movie.image) if @movie.image && !@movie.image.empty? %><br /><br />
   <% end %>
   <span class="red">*</span> <span class="small"> <%= t(".red_astronim_text") %></span>
+  <% if @movie.errors.any? %>
+    <div id="error_explanation">
+      <%= t("other.pluralize.error", count: @movie.errors.count) %>:<br>
+      <% @movie.errors.full_messages.each do |message| %>
+        - <span class="small"><%= message %></span><br>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 <% end %>

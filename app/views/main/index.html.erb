@@ -1,17 +1,17 @@
 <div class="movie-left-container right-border">
 	<div class="index-page-header">
-		<%= link_to "Фильмы", index_path, class: "index-selected-tab" %>
-		<%= link_to "Посты", posts_path, class: "index-tab" %>
+		<%= link_to t("general.header.movies_tab"), index_path, class: "index-selected-tab" %>
+		<%= link_to t("general.header.posts_tab"), posts_path, class: "index-tab" %>
 	</div>
 	<div>
 		<h2 class="h2-container h2-background" style="margin-top: 0px;">
 			<a class="index-button-show-first left" onmouseover="$(this).next().show()" onmouseout="$(this).next().hide()"> <%= @filter_title  %> ▾</a>
 			<div class="index-show-first-options" style="display: none;" onmouseover="$(this).show()" onmouseout="$(this).hide()">
-				<%= link_to "Последние рецензированые/оцененые", "/filter/1" %><br>
-				<%= link_to "Последние добавленые", "/filter/2" %><br>
-				<%= link_to "Последние комментируемые", "/filter/3" %><br>
-				<%= link_to "Самые рецинзируемые", "/filter/4" %><br>
-				<%= link_to "Сначала самые охуенные", "/filter/5" %>
+				<%= link_to t(".filter_review_first"), "/filter/1" %><br>
+				<%= link_to t(".filter_last_added"), "/filter/2" %><br>
+				<%= link_to t(".filter_last_commented"), "/filter/3" %><br>
+				<%= link_to t(".filter_most_reviews"), "/filter/4" %><br>
+				<%= link_to t(".filter_best_first"), "/filter/5" %>
 			</div>
 		</h2>
 	</div>
@@ -34,7 +34,7 @@
 									<div class="movie-stars index-movie-stars stacked left">
 										<ul>
 	    								<% (1..3).each do |i| %>
-	    									<li class='<%= 'on' unless i > get_rounded_stars(movie) %>' title='голосов: <%= get_stars_count(movie) %>'></li>
+	    									<li class='<%= 'on' unless i > get_rounded_stars(movie) %>' title="<%= t('.votes') %>: <%= get_stars_count(movie) %>"></li>
 	    								<% end %>
 	    								</ul>
 	    								<div class="stars-transscript left"><%= "#{get_rounded_stars(movie)}" %></div>
@@ -46,14 +46,14 @@
 									<% if get_awesome_good_amount(movie) > 0 %>
 										<div class="index-medal">
 											<% (1..get_awesome_good_amount(movie)).each do |i| %>
-												<%= image_tag ("medal.png"), class: "index-medal", style: "right: #{i * 10}px;", title: "Сколько же пацанов считает, что фильм охуенен? Вот сколько - #{get_awesome_good_amount(movie)}!" %>
+												<%= image_tag ("medal.png"), class: "index-medal", style: "right: #{i * 10}px;", title: "#{t('.how_many_awesome_votes')} - #{get_awesome_good_amount(movie)}!" %>
 											<% end %>
 										</div>	
 									<% end %>
 									<% if get_awesome_bad_amount(movie) > 0 %>
 										<div class="index-medal">
 											<% (1..get_awesome_bad_amount(movie)).each do |i| %>
-												<%= image_tag ("huita.png"), class: "index-medal", style: "top: 30px; right: #{i * 10}px;", title: "Сколько же пацанов считает, что фильм говно? Вот сколько - #{get_awesome_bad_amount(movie)}!" %>
+												<%= image_tag ("huita.png"), class: "index-medal", style: "top: 30px; right: #{i * 10}px;", title: "#{t('.how_many_shit_votes')} - #{get_awesome_bad_amount(movie)}!" %>
 											<% end %>
 										</div>										
 									<% end %>
@@ -62,10 +62,10 @@
 						</tr>
 						<tr>
 							<td class="bottom half">
-								<i><%= link_to raw("Рецензий #{get_all_responses_amount(movie, 'review')} | #{get_new_responses_amount(movie, 'review')}"), movie_path(movie) %></i>
+								<i><%= link_to raw("#{t('general.other.reviews')} #{get_all_responses_amount(movie, 'review')} | #{get_new_responses_amount(movie, 'review')}"), movie_path(movie) %></i>
 							</td>
 							<td class="bottom half">
-								<i><%= link_to raw("Комментариев #{get_all_responses_amount(movie, 'comment')} | #{get_new_responses_amount(movie, 'comment')}"), comments_path(movie.id)%></i>
+								<i><%= link_to raw("#{t('general.other.comments')} #{get_all_responses_amount(movie, 'comment')} | #{get_new_responses_amount(movie, 'comment')}"), comments_path(movie.id)%></i>
 							</td>
 						</tr>
 					</table>

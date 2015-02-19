@@ -15,8 +15,45 @@ ru:
       cancel: "Я передумал"
       delete: "Удалить"
       delete_confirm: "Точно удалить? На 100%?"
+    other:
+      reviews: "Рецензий"
+      comments: "Комментариев"
+  comments:
+    add_comment_form:
+      insert_image: "вставить картинку"
+      submit: "Готово"
+      submit_in_progress: "Добавляю..."
+    comment_template:
+      wrote: "Написал"
+      answer: "ответить"
+    show:
+      back_to_movie: "Вернуться к фильму"
+      last_review: "Последний отзыв таков"
+      no_reviews: "А отзывов-то и нет"
+      comments: "Комментарии"
+      no_comments: "Здесь пусто. Будь первым!"
+      new_comment: "Новый комментарий"
+  login:
+    index:
+      enter: "Войти"
+      register: "Регистрация"
+  logout:
+    bye: "Пока, друг!"
+    comeback: "Заходи ещё раз как-нибудь. Например прямо"
+    now: "сейчас"
   main: 
-
+    filter:
+      delete: "удалить"
+      all_years: "Все года"
+    index:
+      filter_review_first: "Последние рецензированые/оцененые"
+      filter_last_added: "Последние добавленые"
+      filter_last_commented: "Последние комментируемые"
+      filter_most_reviews: "Самые рецинзируемые"
+      filter_best_first: "Сначала самые охуенные"
+      votes: "Голосов"
+      how_many_awesome_votes: "Сколько же пацанов считает, что фильм охуенен? Вот сколько"
+      how_many_shit_votes: "Сколько же пацанов считает, что фильм говно? Вот сколько"
   movies:
     form:
       title: "Название"
@@ -89,3 +126,19 @@ ru:
   date:
     month_names: [~, января, февраля, марта, апреля, мая, июня, июля, фвгуста, сентября, октября, ноября, декабря]
     abbr_month_names: [~, янв, фев, марта, апр, мая, июня, июля, авг, сен, окт, ноя, дек]
+  activerecord:
+    attributes:
+      movie:
+        title: "Название"
+        orig_title: "Название в оригинале"
+    errors:
+      models:
+        movie:
+          attributes:
+            title:
+              blank: "пустое"
+  other:
+    pluralize:
+      error:
+        one: "Есть ошибочка"
+        other: "Есть ошибочки"
