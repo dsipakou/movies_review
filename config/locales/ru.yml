@@ -7,17 +7,54 @@ ru:
       movies_tab: "Фильмы"
       posts_tab: "Посты"
     crud:
+      save: "Сохранить"
       show: "Посмореть"
       edit: "Изменить"
       back: "Назад"
+      cancel: "Я передумал"
       delete: "Удалить"
       delete_confirm: "Точно удалить? На 100%?"
+  main: 
+
+  movies:
+    form:
+      title: "Название"
+      orig_title: "Название в оригинале"
+      year: "В каком году снят"
+      link: "Ссылка"
+      link_to_image: "Ссылка на картинку"
+      current_image: "Сейчас такая картинка"
+      red_astronim_text: "хотя бы со звёздочкой нужно заполнить, иначе смысл?"
+    edit:
+      title: "Редактирование фильма"
+    new:
+      title: "Добавляем новое кино"
+    show:
+      go_to_index: "Хочу на главную!"
+      my_rating: "Моя оценка такова"
+      awesomeness: "Кроме того, я считаю, что этот фильм..."
+      edit_movie: "Редактировать кино"
+      added_by: "Фильм любезно добавил"
+      write_a_review: "Напишу-ка я отзыв"
+      my_review: "Что я написал"
+      other_reviews: "Что пишут другие"
+  post_comments:
+    add_comment_form: 
+      insert_image: "вставить картинку"
+      submit: "Готово"
+      submit_in_progress: "Добавляю..."
+    inner:
+      wrote: "Написал"
+      answer: "ответить"
+    show:
+      comments: "Комментарии"
+      no_comments: "Здесь пусто. Будь первым!"
+      new_comment: "Новый комментарий"
   posts:
     form:
       insert_image: "вставить картинку"
-      add_in_progress: "Добавляю..."
       submit: "Готово"
-      cancel: "Я передумал"
+      submit_in_progress: "Добавляю..."
       empty_post: "Пустой пост - грустный пост"
     new:
       title: "Новый пост буду делать"
@@ -31,10 +68,6 @@ ru:
       awesome: "Охуенный"
       shit: "Говно"
       cancel: "Я передумал"
-  time:
-    formats:
-      default: "%d %B %Y в %H:%M"
-      short: "%d %b %H:%M"
   users:
     form:
       username: "username (это твой логин для входа)"
@@ -49,6 +82,10 @@ ru:
       username: "username (логин)"
       nickname: "nickname (на сайте)"
       password: "Пароль (ты серьёзно?)"
+  time:
+    formats:
+      default: "%d %B %Y в %H:%M"
+      short: "%d %b %H:%M"
   date:
     month_names: [~, января, февраля, марта, апреля, мая, июня, июля, фвгуста, сентября, октября, ноября, декабря]
     abbr_month_names: [~, янв, фев, марта, апр, мая, июня, июля, авг, сен, окт, ноя, дек]

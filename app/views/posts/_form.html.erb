@@ -3,8 +3,8 @@
   <%= f.hidden_field :user_id, value: session[:userid] %>
   <a class="comment-insert-image-link"><i><%= t(".insert_image") %></i></a>
   <%= f.text_area :content, class: "comment-review-textbox" %>
-  <%= f.submit t(".submit"), class: "button", data: { disable_with: t(".add_in_progress") } %>
-  <%= link_to t(".cancel"), posts_path, class: "cancel-link right bold" %></td>  
+  <%= f.submit t(".submit"), class: "button", data: { disable_with: t(".submit_in_progress") } %>
+  <%= link_to t("general.crud.cancel"), posts_path, class: "cancel-link right bold" %></td>  
 </div>
 <div class="movie-right-container">
   <% if @post.errors.any? %>
