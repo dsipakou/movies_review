@@ -14,10 +14,10 @@ class CommentsController < ApplicationController
   # GET /comments/1.json
   def show
     authorize! :show, @comments
-    @comments = Comment.where({movie_id: params[:movie_id]})
+    @comments = Comment.get_comments_for_movie(params[:movie_id])
     @movie = Movie.where({id: params[:movie_id]}).first
-    @comment = Comment.new(:movie_id => @movie.id, :user_id => session[:userid])
-    @last_user_review = User.find(@movie.reviews.where.not(content: nil).last.user_id) unless @movie.reviews.where.not(content: nil).last.nil?
+    @comment = Comment.new(movie_id: @movie.id, user_id: session[:userid])
+    @last_user_review = User.get_review_last_view_time(@movie)
     @track_times = TrackTimes.where({movie_id: @movie.id, user_id: session[:userid]})
     unless @track_times.size == 0
       @last_login = @track_times.first.updated_at

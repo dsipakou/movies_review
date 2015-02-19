@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     post 'search', to: "search#search"
 
   get 'filter/:id', to: "main#view_filter"
+  get 'filter/year/:year', to: "main#year_filter"
 
   get 'login', to: "login#index", as: :login
   post 'login', to: "login#attempt_login"

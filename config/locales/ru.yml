@@ -1,4 +1,91 @@
 ru:
+  general:
+    header:
+      logout: "Уйти отсюда"
+      new_movie: "Добавить фильм"
+      new_post: "Написать новый пост"
+      movies_tab: "Фильмы"
+      posts_tab: "Посты"
+      go_to_index: "Хочу на главную!"
+    crud:
+      save: "Сохранить"
+      show: "Посмореть"
+      edit: "Изменить"
+      back: "Назад"
+      cancel: "Я передумал"
+      delete: "Удалить"
+      delete_confirm: "Точно удалить? На 100%?"
+  main: 
+
+  movies:
+    form:
+      title: "Название"
+      orig_title: "Название в оригинале"
+      year: "В каком году снят"
+      link: "Ссылка"
+      link_to_image: "Ссылка на картинку"
+      current_image: "Сейчас такая картинка"
+      red_astronim_text: "хотя бы со звёздочкой нужно заполнить, иначе смысл?"
+    edit:
+      title: "Редактирование фильма"
+    new:
+      title: "Добавляем новое кино"
+    show:
+      my_rating: "Моя оценка такова"
+      awesomeness: "Кроме того, я считаю, что этот фильм..."
+      edit_movie: "Редактировать кино"
+      added_by: "Фильм любезно добавил"
+      write_a_review: "Напишу-ка я отзыв"
+      my_review: "Что я написал"
+      other_reviews: "Что пишут другие"
+  post_comments:
+    add_comment_form: 
+      insert_image: "вставить картинку"
+      submit: "Готово"
+      submit_in_progress: "Добавляю..."
+    inner:
+      wrote: "Написал"
+      answer: "ответить"
+    show:
+      comments: "Комментарии"
+      no_comments: "Здесь пусто. Будь первым!"
+      new_comment: "Новый комментарий"
+  posts:
+    form:
+      insert_image: "вставить картинку"
+      submit: "Готово"
+      submit_in_progress: "Добавляю..."
+      empty_post: "Пустой пост - грустный пост"
+    new:
+      title: "Новый пост буду делать"
+  reviews:
+    inner:
+      awesome_movie: "охуенное кино"
+      shit_movie: "фильм говно"
+      delete_review: "Хочу удалить это"
+      delete_confirm: "Хорошо ли ты подумал, друг?"
+    buttons_rating:
+      awesome: "Охуенный"
+      shit: "Говно"
+      cancel: "Я передумал"
+  users:
+    form:
+      username: "username (это твой логин для входа)"
+      nickname: "nickname (так тебя будут звать на сайте)"
+      password: "Пароль, тут нехуй объяснять"
+      invite: "Ну и инвайт, пожалуйста"
+      register: "Регистрируюсь!"
+    index:
+      username: "username чувака"
+      nickname: "nickname чувака"
+    show: 
+      username: "username (логин)"
+      nickname: "nickname (на сайте)"
+      password: "Пароль (ты серьёзно?)"
+  time:
+    formats:
+      default: "%d %B %Y в %H:%M"
+      short: "%d %b %H:%M"
   date:
-    month_names: [~, Январь, Февраль, Март, Апрель, Май, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь]
-    abbr_month_names: [~, Янв, Фев, Март, Апр, Май, Июнь, Июль, Авг, Сен, Окт, Ноя, Дек]
+    month_names: [~, января, февраля, марта, апреля, мая, июня, июля, фвгуста, сентября, октября, ноября, декабря]
+    abbr_month_names: [~, янв, фев, марта, апр, мая, июня, июля, авг, сен, окт, ноя, дек]

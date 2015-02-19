@@ -1,6 +1,6 @@
 <div class="movie-left-container">
   <!-- <p id="notice"><%= notice %></p> -->
-  <div class="stacked"><%= link_to 'Хочу на главную!', index_path, class: "action-link" %></div>
+  <div class="stacked"><%= link_to t("general.header.go_to_index"), index_path, class: "action-link" %></div>
   <div class="movie-cover-image-container col">
     <%= image_tag ("posters/" + @movie.image), class: "movie-cover-image" unless @movie.image.empty? %>
     <%= render "reviews/star_rating" %>     
@@ -14,41 +14,41 @@
       <%= "(#{@movie.year})" if @movie.year? %>
     </div>
     <div class="movie-stars-button-holder">
-      <div class="movie-stars-text">Моя оценка такова</div>
+      <div class="movie-stars-text"><%= t(".my_rating") %></div>
       <%= render partial: 'reviews/star_rating_input' %>
     </div>
-    <div class="movie-awesome-text left">Кроме того, я считаю, что этот фильм...</div>
-    <%= render partial: 'reviews/buttons_rating', collection: @movie.reviews.where({user_id: session[:userid]}) %>
+    <div class="movie-awesome-text left"><%= t(".awesomeness") %></div>
+    <%= render partial: 'reviews/buttons_rating', collection: User.get_my_review(@movie, session[:userid]) %>
   </div>
   <div class="clear"></div>
   <div>
-    <div><%= link_to 'Редактировать кино', edit_movie_path(@movie), class: "action-link" %>
+    <div><%= link_to t(".edit_movie"), edit_movie_path(@movie), class: "action-link" %>
     <%= link_to raw("Комментариев #{@movie.comments.size} | #{get_new_responses_amount(@movie, 'comment')}"), comments_path(params[:id]), class: "action-link right" %></div>
-    <div class="movie-added-by-text">Фильм любезно добавил <strong><%= User.find(@movie.user_id).nickname %></strong></div>
+    <div class="movie-added-by-text"><%= t(".added_by") %> <strong><%= User.get_movie_creator_nickname(@movie) %></strong></div>
     <div>
-      <% if @movie.reviews.where({user_id: session[:userid]}).size == 0 || !@movie.reviews.where({user_id: session[:userid]}).first.content? %>
-      <h2 class="h2-container h2-background">Напишу-ка я отзыв</h2>
+      <% if User.user_has_no_review?(@movie, session[:userid]) %>
+      <h2 class="h2-container h2-background"><%= t(".write_a_review") %></h2>
       <%= render "reviews/form" %>
       <% else %>
-      <h2 class="h2-container h2-background">Что я написал</h2>
-      <div><%= render partial: "reviews/inner", collection: @movie.reviews.where({user_id: session[:userid]}) %></div>
+      <h2 class="h2-container h2-background"><%= t(".my_review") %></h2>
+      <div><%= render partial: "reviews/inner", collection: User.get_my_review(@movie, session[:userid]) %></div>
       <% end %>
 
-      <% unless @movie.reviews.where.not(user_id: session[:userid]).size == 0 %>
-      <h2 class="h2-container h2-background">Что пишут другие</h2>
-      <div class="review-holder"><%= render partial: "reviews/inner", collection: @movie.reviews.where.not(user_id: session[:userid]) %></div>
-      <% end %>
+      <h2 class="h2-container h2-background"><%= t(".other_reviews") %></h2>
+      <div class="review-holder"><%= render partial: "reviews/inner", collection: User.get_other_reviews(@movie, session[:userid]) %></div>
     </div>
   </div>
 </div>
 <div class="movie-right-container">
-  <h2 class="h2-container h2-background">Вот последний комментарий</h2>
-  <% unless @movie.comments.last.nil? %>
-  <%= @movie.comments.last.content  %>
-    <footer>
-        Написал <%= User.find(@movie.comments.last.user_id).nickname %> <%= @movie.comments.last.updated_at.to_formatted_s(:short) %>
-    </footer>
-  <% else %>
-  <i>Никто не писал комментариев</i>
-  <% end %>
+  <div>
+    <h2 class="h2-container h2-background">Вот последний комментарий</h2>
+      <% unless @movie.comments.last.nil? %>
+        <%= @movie.comments.last.content  %>
+        <footer>
+          Написал <%= User.find(@movie.comments.last.user_id).nickname %> <%= l @movie.comments.last.updated_at, format: :short %>
+        </footer>
+      <% else %>
+        <i>Никто не писал комментариев</i>
+      <% end %>
+  </div>
 </div>

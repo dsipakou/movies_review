@@ -2,30 +2,30 @@
 <div class="movie-left-container">
   <table width="100%">
     <tr>
-      <th><%= f.label :title, "Название" %><span class="red">*</span></th>
+      <th><%= f.label :title, t(".title") %><span class="red">*</span></th>
       <td><%= f.text_field :title, class: "field" %></td>
     </tr>
     <tr>
-      <th><%= f.label :orig_title, "Название в оригинале" %></th>
+      <th><%= f.label :orig_title, t(".orig_title") %></th>
       <td><%= f.text_field :orig_title, class: "field" %></td>
     </tr>
     <tr>
-      <th><%= f.label :year, "В каком году снят" %></th>
+      <th><%= f.label :year, t(".year") %></th>
       <td><%= f.text_field :year, size: "4" %></td>
     </tr>
     <tr>
-      <th><%= f.label :link, "Ссылка" %> <span class="small">(например на kinopoisk.ru)</span> </th>
+      <th><%= f.label :link, t(".link") %> <span class="small">(например на kinopoisk.ru)</span> </th>
       <td><%= f.text_field :link, class: "field" %></td>
     </tr>
     <tr>
-      <th><%= f.label :image, "Ссылка на картинку" %></th>
+      <th><%= f.label :image, t(".link_to_image") %></th>
       <td><%= text_field_tag :url_upload_textbox, nil, class: "field" %><%= f.hidden_field :image %></td>
     </tr>
     <tr>
       <td><%= f.hidden_field :user_id, value: session[:userid] %>
-      <%= f.submit "Сохранить", class: "button" %></td>
+      <%= f.submit t("general.crud.save"), class: "button" %></td>
       <td>
-      <%= link_to 'Я передумал', index_path, class: "cancel-link" %></td>  
+      <%= link_to t("general.crud.cancel"), index_path, class: "cancel-link" %></td>  
     </tr>
   </table>
 </div>
@@ -42,9 +42,9 @@
     </div>
   <% end %>
   <% if @movie.image && !@movie.image.empty? %>
-    <h2 class="h2-container h2-background no-top-margin">Сейчас такая картинка</h2>
+    <h2 class="h2-container h2-background no-top-margin"><%= t(".current_image") %></h2>
     <%= image_tag ("posters/" + @movie.image) if @movie.image && !@movie.image.empty? %><br /><br />
   <% end %>
-  <span class="red">*</span> <span class="small"> хотя бы со звёздочкой нужно заполнить, иначе смысл?</span>
+  <span class="red">*</span> <span class="small"> <%= t(".red_astronim_text") %></span>
 </div>
 <% end %>

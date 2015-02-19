@@ -23,7 +23,6 @@ class MoviesController < ApplicationController
     #@review = Review.new(:movie_id => @movie.id, :user_id => session[:userid])
     if Review.where(movie_id: @movie.id, user_id: session[:userid]).present?
       @review = Review.where(movie_id: @movie.id, user_id: session[:userid]).first
-      
     else
       @review = Review.create(movie_id: @movie.id, user_id: session[:userid])
     end

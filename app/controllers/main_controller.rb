@@ -1,44 +1,53 @@
 class MainController < ApplicationController
 
-	layout "main"
-
+  layout "main"
+	
   def index
   	authorize! :index, @movies
-  	if session[:search_query]
-  		@movies = Movie.where("title LIKE ? OR orig_title LIKE ?", "%#{session[:search_query]}%", "%#{session[:search_query]}%")
-  	elsif session[:view_filter]
-  		case session[:view_filter]
-			when "1"
-				@movies = Movie.joins(:reviews).where("reviews.content <> '' OR reviews.stars <> '' OR reviews.awesome <> ''").order('reviews.updated_at DESC').first(100000).uniq().first(20)
-				@filter_title = "Последние рецензированые/оцененные"	
-			when "2"
-				@movies = Movie.order("created_at DESC").first(20)
-				@filter_title = "Последние добавленые"
-			when "3"
-				@movies = Movie.joins(:comments).order('comments.updated_at DESC').first(100000).uniq().first(20)
-				@filter_title = "Последние комментируемые"
-			when "4"
-				@movies = Movie.joins(:reviews).where.not(reviews: {content: nil}).group("reviews.movie_id").order("count(reviews.movie_id) DESC").first(20)
-				@filter_title = "Самые рецензируемые"
-			when "5"
-				@movies = Movie.joins(:reviews).where(reviews: {awesome: 1}).group("reviews.movie_id").order("count(reviews.movie_id) DESC").first(20)
-				@filter_title = "Сначала самые охуенные"
-			else
-				@movies = Movie.joins(:reviews).where("reviews.content <> '' OR reviews.stars <> '' OR reviews.awesome <> ''").order('reviews.updated_at DESC').first(100000).uniq().first(20)
-				@filter_title = "Последние рецензированые/оцененные"
-			end
-  	else
-  		@movies = Movie.joins(:reviews).where("reviews.content <> '' OR reviews.stars <> '' OR reviews.awesome <> ''").order('reviews.updated_at DESC').first(100000).uniq().first(20)
-		@filter_title = "Последние рецензированые/оцененные"
-  	end
-  	if params[:clear_filter]
-  		session[:search_query] = nil
-  		redirect_to index_path
-  	end
+    @search_params = {}
+  	messages = ["Последние рецензированые/оцененные", 
+  				"Последние добавленые", 
+  				"Последние комментируемые", 
+  				"Самые рецензируемые", 
+	 				"Сначала самые охуенные"]
+  	@years = Movie.get_years()
+    if params[:clear_filter].present?
+      session[:search_query] = nil
+      redirect_to index_path
+    end
+    if session[:search_query]
+      @search_params[:search_query] = session[:search_query]
+    end
+    if session[:view_filter]
+      @search_params[:view_filter] = session[:view_filter]
+      @filter_title = messages[session[:view_filter].to_i() - 1]
+    else
+      @search_params[:view_filter] = 1
+      @filter_title = messages[0]
+    end
+    if session[:year_filter]
+      year = session[:year_filter]
+      if year == '0'
+        session[:year_filter] = nil
+        @year_filter_title = "Все года"
+      else
+        @search_params[:year_filter] = session[:year_filter]
+        @year_filter_title = year
+      end
+    else
+      @year_filter_title = "Все года"
+    end
+      
+    @movies = Movie.filter(@search_params)
   end
 
   def view_filter
-	session[:view_filter] = params[:id]
-	redirect_to index_path
+	 session[:view_filter] = params[:id]
+	 redirect_to index_path
+  end
+
+  def year_filter
+    session[:year_filter] = params[:year]
+    redirect_to index_path
   end
 end

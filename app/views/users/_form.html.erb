@@ -14,27 +14,27 @@
         <% end %>
 
         <div class="field">
-          <%= f.label :username, "username (это твой логин для входа)", for: :username %><br>
+          <%= f.label :username, t(".username"), for: :username %><br>
           <%= f.text_field :username, class: "b-text_input" %>
         </div>
         <br>
         <div class="field">
-          <%= f.label :nickname, "nickname (так тебя будут звать на сайте)" %><br>
+          <%= f.label :nickname, t(".nickname") %><br>
           <%= f.text_field :nickname, class: "b-text_input" %>
         </div>
         <br>
         <div class="field">
-          <%= f.label :password, "Пароль, тут нехуй объяснять" %><br>
+          <%= f.label :password, t(".password") %><br>
           <%= f.password_field :password, class: "b-text_input" %>
         </div>
         <br>
         <div>
-          <%= label_tag 'Ну и инвайт, пожалуйста' %><br>
+          <%= label_tag t(".invite") %><br>
           <%= text_field_tag 'invite', nil, class: "b-text_input" %>
         </div>
         <br>
         <div class="actions">
-          <%= f.submit "Регистрируюсь!" %>
+          <%= f.submit t(".register") %>
         </div>
       <% end %>
   </div>
