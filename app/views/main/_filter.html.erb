@@ -1,10 +1,19 @@
-<% unless @years.nil? %>	
-	<%= form_tag ("/year") do %>
-		<%= select_tag "year", options_from_collection_for_select(@years, "id", "year"), prompt: "Хочу выбрать год", class: "index-year-select" %>
-	<% end %>
-<% end %>
 <% if session[:search_query] %>
-	<div><strong>Ищем вот это:</strong></div>
+<div>
+	<div><strong>Что ищем:</strong></div>
 	<%= link_to "#{session[:search_query]} [удалить]", '?clear_filter=true', class: "filter-link" %>
+</div>
+<% end %>
+<% unless @years.nil? %>
+	<div class="clear"></div>	
+	<div style="margin-top: 15px;">
+		<a class="index-year-select" onmouseover="$(this).next().show()" onmouseout="$(this).next().hide()"> <%= @year_filter_title  %> ▾</a>
+		<div class="index-year-first-option" style="display: none;" onmouseover="$(this).show()" onmouseout="$(this).hide()">
+			<%= link_to "Все года", "/filter/year/0" %><br>	
+			<% @years.each do |year| %>
+				<%= link_to year, "/filter/year/#{year}" %><br>	
+			<% end %>
+		</div>
+	</div>
 <% end %>
 <%= params[:clear_filter]%>

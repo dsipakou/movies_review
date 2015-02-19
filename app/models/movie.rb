@@ -8,21 +8,37 @@ class Movie < ActiveRecord::Base
 	validates :title, presence: true, uniqueness: true
 	validates :orig_title, uniqueness: true
 
-	def self.sorting_by(param)
+	def self.sorting_by(query, param)
   		case param
 			when "1"
-				Movie.joins(:reviews).where("reviews.content <> '' OR reviews.stars <> '' OR reviews.awesome <> ''").order('reviews.updated_at DESC').first(100000).uniq().first(20)
+				query = query.joins(:reviews).where("reviews.content <> '' OR reviews.stars <> '' OR reviews.awesome <> ''").order('reviews.updated_at DESC').first(100000).uniq().first(20)
 			when "2"
-				Movie.order("created_at DESC").first(20)
+				query = query.order("created_at DESC").first(20)
 			when "3"
-				Movie.joins(:comments).order('comments.updated_at DESC').first(100000).uniq().first(20)
+				query = query.joins(:comments).order('comments.updated_at DESC').first(100000).uniq().first(20)
 			when "4"
-				Movie.joins(:reviews).where.not(reviews: {content: nil}).group("reviews.movie_id").order("count(reviews.movie_id) DESC").first(20)
+				query = query.joins(:reviews).where.not(reviews: {content: nil}).group("reviews.movie_id").order("count(reviews.movie_id) DESC").first(20)
 			when "5"
-				Movie.joins(:reviews).where(reviews: {awesome: 1}).group("reviews.movie_id").order("count(reviews.movie_id) DESC").first(20)
+				query = query.joins(:reviews).where(reviews: {awesome: 1}).group("reviews.movie_id").order("count(reviews.movie_id) DESC").first(20)
 		else
-			Movie.joins(:reviews).where("reviews.content <> '' OR reviews.stars <> '' OR reviews.awesome <> ''").order('reviews.updated_at DESC').first(100000).uniq().first(20)
+			query = query.joins(:reviews).where("reviews.content <> '' OR reviews.stars <> '' OR reviews.awesome <> ''").order('reviews.updated_at DESC').first(100000).uniq().first(20)
 		end
+		query
+	end
+
+	def self.filter(params)
+		params ||= {}
+		query = Movie.all
+		if params[:search_query].present?
+			query = query.where("title LIKE ? OR orig_title LIKE ?", "%#{params[:search_query]}%", "%#{params[:search_query]}%")
+		end
+		if params[:year_filter].present?
+			query = query.where(year: params[:year_filter])
+		end
+		if params[:view_filter].present?
+			query = self.sorting_by(query, params[:view_filter])
+		end
+		query
 	end
 
 	def self.search(query)
@@ -30,6 +46,10 @@ class Movie < ActiveRecord::Base
 	end
 
 	def self.get_years()
-		Movie.where("year <> ''").uniq().order('year DESC')
+		Movie.where("year <> ''").order('year DESC').uniq.pluck(:year)
+	end
+
+	def self.by_year(year)
+		Movie.where("year in (#{year})")
 	end
 end

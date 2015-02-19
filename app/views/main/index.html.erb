@@ -5,7 +5,6 @@
 	</div>
 	<div>
 		<h2 class="h2-container h2-background" style="margin-top: 0px;">
-			<% unless session[:search_query] %>
 			<a class="index-button-show-first left" onmouseover="$(this).next().show()" onmouseout="$(this).next().hide()"> <%= @filter_title  %> ▾</a>
 			<div class="index-show-first-options" style="display: none;" onmouseover="$(this).show()" onmouseout="$(this).hide()">
 				<%= link_to "Последние рецензированые/оцененые", "/filter/1" %><br>
@@ -14,7 +13,6 @@
 				<%= link_to "Самые рецинзируемые", "/filter/4" %><br>
 				<%= link_to "Сначала самые охуенные", "/filter/5" %>
 			</div>
-			<% end %>
 		</h2>
 	</div>
 	<table class="index-page-table">
