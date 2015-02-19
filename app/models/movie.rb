@@ -5,8 +5,7 @@ class Movie < ActiveRecord::Base
 	has_many :track_times
 	belongs_to :user
 
-	validates :title, presence: true, uniqueness: true
-	validates :orig_title, uniqueness: true
+	validates :title, presence: true
 
 	def self.sorting_by(query, param)
   		case param
