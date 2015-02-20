@@ -1,7 +1,7 @@
 <div class="post-full-container right-border">
 	<div class="index-page-header", style="margin-bottom: 20px;">
 		<%= link_to t("general.header.movies_tab"), index_path, class: "index-tab" %>
-		<%= link_to t("posts_tab"), posts_path, class: "index-selected-tab" %>
+		<%= link_to t("general.header.posts_tab"), posts_path, class: "index-selected-tab" %>
 	</div>
 	<table class="index-page-table">
 		<% if @posts %><% @posts.each do |post| %>
