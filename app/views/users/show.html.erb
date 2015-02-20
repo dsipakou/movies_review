@@ -1,19 +1,22 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong><%= t(".username") %></strong>
-  <%= @user.username %>
-</p>
-
-<p>
-  <strong><%= t(".nickname") %></strong>
-  <%= @user.nickname %>
-</p>
-
-<p>
-  <strong><%= t(".password") %></strong>
-  <%= @user.password %>
-</p>
-
-<%= link_to t("general.crud.edit"), edit_user_path(@user) %> |
-<%= link_to t("general.crud.back"), login_path %>
+<div class="user-left-container">
+	<div class="user-info-content">
+		<div class="title"><%= t(".username") %></div>
+		<div class="content"><%= @user.username %></div>
+		<br class="clear">
+		<div class="title"><%= t(".nickname") %></div>
+		<div class="content"><%= @user.nickname %></div>
+		<br class="clear">
+		<div class="title"><%= t(".invites") %></div>
+		<% unless Invite.get_all_invites_for_user(@user) == [] %>
+			<div class="content"><i><%= t(".invite_explanation") %></i></div>
+			<% Invite.get_all_invites_for_user(@user).each do |invite| %>
+				<div class="title"></div>
+				<div class="content"><span class=<%= "line-through" if invite.used? %> ><%= invite.body %></span></div>
+				<br class="clear">
+			<% end %>
+		<% else %>
+			<div class="content"><i><%= t(".no_invites") %></i></div>
+		<% end %>
+	</div>
+</div>

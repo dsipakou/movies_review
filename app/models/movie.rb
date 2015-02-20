@@ -40,15 +40,7 @@ class Movie < ActiveRecord::Base
 		query
 	end
 
-	def self.search(query)
-		Movie.where("title LIKE ? OR orig_title LIKE ?", query, query)
-	end
-
 	def self.get_years()
 		Movie.where("year <> ''").order('year DESC').uniq.pluck(:year)
-	end
-
-	def self.by_year(year)
-		Movie.where("year in (#{year})")
 	end
 end

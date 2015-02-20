@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     authorize! :show, @users
+    render layout: "main"
   end
 
   # GET /users/new
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if invite.size > 0 && @user.save
         invite.first.update(used: true)
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to login_path, notice: 'Ура! Теперь можно входить.' }
         format.json { render :show, status: :created, location: @user }
       else
         @user.errors.add(:base, "Инвайт уже всё, или такого вообще никогда не было") if invite.size == 0

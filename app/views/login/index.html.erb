@@ -4,6 +4,9 @@
     <div class="b-auth_form_bg"></div>
     <span class="b-logo"><%= image_tag ('logo.png') %></span>
     <%= form_tag(controller: "login", action: "attempt_login") do %>
+        <div class="b-auth_notice">
+            <%= label_tag notice %>
+        </div>
         <%= label_tag :username, nil, for: "username" %>
         <%= text_field_tag :username, nil, id: "username", class: "b-text_input", autofocus: true %>
         <%= label_tag :password %>

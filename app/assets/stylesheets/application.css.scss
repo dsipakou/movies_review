@@ -183,7 +183,7 @@ a {
 }
 
 .b-auth_form {
- 	height: 500px;
+ 	height: 600px;
  	width: 405px;
  	position: absolute;
  	top: 37%;
@@ -200,6 +200,13 @@ a {
  	min-width: 740px;
  	height: 100%;
  }
+
+ .b-auth_notice {
+ 	color: black;
+ 	font-size: 12px;
+ 	margin-bottom: 10px;
+ }
+
 
  .b-auth_form form {
  	position: relative;
@@ -1002,17 +1009,44 @@ a.filter-link:hover {
 	text-decoration: line-through;
 }
 
+.line-through {
+	text-decoration: line-through;
+}
+
 #error_explanation {
 	margin-top: 20px;
 	font-weight: bold;
 	color: #382110;
 	text-align: left; 
 	font-size: 14px;
-	span {
+	span.small {
 		font-weight: normal;	
+		font-size: 11px;
 	}
 }
 
 .field_with_errors {
 	color: red;
+}
+
+.user-left-container {
+	font-size: 13px;
+	float: right;
+	float: left;
+	width: 600px;
+	padding-right: 10px;
+	.user-info-content {
+		.title {
+			color: #382110;
+			font-weight: bold;
+			width: 25%;
+			float: left;
+			margin: 5px 0px;
+		}
+		.content {
+			float: left;
+			width: 75%;
+			margin: 5px 0px;
+		}
+	}
 }
