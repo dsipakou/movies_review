@@ -2,9 +2,13 @@ class User < ActiveRecord::Base
 	
 	has_secure_password
 
-	validates :username, presence: true, uniqueness: true
+	VALID_CHARSET = '/[a-zA-Z0-9]*'
+
+	validates :username, presence: true, uniqueness: true, format: {with: /\A[a-zA-Z0-9]+\z/,
+    										message: "только буквы и цифры, друг (не русские)" }
 	validates :nickname, presence: true, uniqueness: true
-	validates :password, presence: true
+	validates :password, format: {with: /\A[a-zA-Z0-9]+\z/,
+    										message: "только буквы и цифры, друг (не русские)" }
 
 	has_many :reviews, :dependent => :destroy
 	has_many :comments, :dependent => :destroy

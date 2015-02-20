@@ -116,9 +116,12 @@ ru:
       username: "username чувака"
       nickname: "nickname чувака"
     show: 
-      username: "username (логин)"
-      nickname: "nickname (на сайте)"
+      username: "Username (логин)"
+      nickname: "Nickname (на сайте)"
       password: "Пароль (ты серьёзно?)"
+      invites: "Инвайты"
+      invite_explanation: "(Копируешь и отдаёшь другу)"
+      no_invites: "А инвайтов-то у тебя и нет"
   time:
     formats:
       default: "%d %B %Y в %H:%M"
@@ -131,12 +134,26 @@ ru:
       movie:
         title: "Название"
         orig_title: "Название в оригинале"
+      user:
+        password: "Пароль"
+        username: "username"
+        nickname: "nickname"
     errors:
       models:
         movie:
           attributes:
             title:
               blank: "пустое"
+        user:
+          attributes:
+            password:
+              blank: "пустой"
+            username: 
+              blank: "пустой"
+              taken: "такой уже есть"
+            nickname:
+              blank: "пустой"
+              taken: "такой уже есть"
   other:
     pluralize:
       error:

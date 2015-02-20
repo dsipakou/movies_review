@@ -5,11 +5,10 @@
       <%= form_for(@user) do |f| %>
         <% if @user.errors.any? %>
           <div id="error_explanation">
-            <ul>
+            <%= t("other.pluralize.error", count: @user.errors.count) %>:<br>
             <% @user.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
+              - <span class="small"><%= message %></span><br>
             <% end %>
-            </ul>
           </div>
         <% end %>
 
