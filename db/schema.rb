@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20150206102053) do
     t.integer  "movie_id"
     t.integer  "parent_id"
     t.integer  "user_id"
-    t.text     "content",    limit: 16777215
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
