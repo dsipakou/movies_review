@@ -4,10 +4,11 @@ Rails.application.routes.draw do
 
   root to: "main#index", as: :index
 
-    post 'search', to: "search#search"
+  post 'search', to: "search#search"
+  get 'search/clear', to: "search#clear"
+  get 'search/year/:year', to: "search#by_year"
+  get 'movie/sorting/:id', to: "search#movie_sort"
 
-  get 'filter/:id', to: "main#view_filter"
-  get 'filter/year/:year', to: "main#year_filter"
 
   get 'login', to: "login#index", as: :login
   post 'login', to: "login#attempt_login"

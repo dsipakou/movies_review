@@ -13,9 +13,9 @@ class LoginController < ApplicationController
   	if authorized_user
       session[:username] = authorized_user.username;
       session[:userid] = authorized_user.id;
-      redirect_to(index_path)  		
+      redirect_to index_path 	
   	else
-      redirect_to(login_path)
+      redirect_to login_path
     end
 
   end

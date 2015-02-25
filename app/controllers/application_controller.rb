@@ -10,7 +10,11 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to index_path
+    unless current_user
+      redirect_to login_url
+    else
+      render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
+    end
   end
 
   protected

@@ -88,5 +88,7 @@ class CommentsController < ApplicationController
 
     def modify_content
       params[:comment][:content] = params[:comment][:content].gsub(/(\r)?\n/, '<br />').gsub('<img', '<br /><img').gsub('/img>', '/img><br />') unless params[:comment][:content].nil?
+      ActionController::Base.helpers.sanitize(params[:comment][:content],
+                          tags: %w(img) );
     end
 end

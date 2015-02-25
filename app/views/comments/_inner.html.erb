@@ -2,7 +2,7 @@
 	<div class="comment-block" data-comment-id=<%= inner.id %> data-movie-id=<%= inner.movie.id %> data-user-id=<%= session[:userid] %>>
 		<div class='comment-block-inner indent_<%= index > 8 ? 8 : index %> <%= 'red-border' if @last_login.nil? || inner.updated_at > @last_login %>'>
 			<div class="comment-body">
-				<%= raw(inner.content) %>
+				<%= sanitize raw(inner.content) %>
 			</div>
 			<footer>
 				<%= t("comments.comment_template.wrote") %> <%= User.find(inner.user_id).nickname %> <%= l inner.updated_at %> <a class="c_answer" data-comment-id=<%= inner.id %>><%= t("comments.comment_template.answer") %></a>

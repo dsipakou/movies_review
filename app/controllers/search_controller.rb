@@ -9,4 +9,19 @@ class SearchController < ApplicationController
 		redirect_to index_path
 	end
 
+	def clear
+		session[:search_query] = nil
+		redirect_to index_path
+	end
+
+	def by_year
+		session[:year_filter] = params[:year]
+    	redirect_to index_path
+	end	
+
+	def movie_sort
+		session[:view_filter] = params[:id]
+   		redirect_to index_path
+	end
+
 end

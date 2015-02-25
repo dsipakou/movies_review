@@ -1,7 +1,7 @@
 <% if session[:search_query] %>
 <div>
 	<div><strong>Что ищем:</strong></div>
-	<%= link_to "#{session[:search_query]} [#{t('.delete')}]", '?clear_filter=true', class: "filter-link" %>
+	<%= link_to "#{session[:search_query]} [#{t('.delete')}]", '/search/clear', class: "filter-link" %>
 </div>
 <% end %>
 <% unless @years.nil? %>
