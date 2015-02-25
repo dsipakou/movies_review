@@ -33,7 +33,7 @@ class PostsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @post.update(post_params)
+      if @post.update(edit_post_params)
         format.html { redirect_to posts_path, notice: 'Обновились.' }
         format.json { render :show, status: :created, location: @post }
       else
@@ -51,6 +51,10 @@ class PostsController < ApplicationController
 
 		def post_params
     	params.require(:post).permit(:user_id, :content)
+    end
+
+    def edit_post_params
+      params.require(:post).permit(:content)
     end
 
     def modify_content
