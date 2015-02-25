@@ -15,7 +15,11 @@ class SearchController < ApplicationController
 	end
 
 	def by_year
-		session[:year_filter] = params[:year]
+		if params[:year] == '0'
+			session[:year_filter] = nil
+		else
+			session[:year_filter] = params[:year]
+		end
     	redirect_to index_path
 	end	
 

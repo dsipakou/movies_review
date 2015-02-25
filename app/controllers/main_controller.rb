@@ -25,14 +25,8 @@ class MainController < ApplicationController
     end
 
     unless session[:year_filter].nil?
-      year = session[:year_filter]
-      if year == '0'
-        session[:year_filter] = nil
-        @year_filter_title = "Все года"
-      else
-        @search_params[:year_filter] = session[:year_filter]
-        @year_filter_title = year
-      end
+      @search_params[:year_filter] = session[:year_filter]
+      @year_filter_title = session[:year_filter]
     else
       @year_filter_title = "Все года"
     end

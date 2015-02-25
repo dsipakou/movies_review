@@ -9,7 +9,7 @@
 	<div style="margin-top: 15px;">
 		<a class="index-year-select" onmouseover="$(this).next().show()" onmouseout="$(this).next().hide()"> <%= @year_filter_title  %> ▾</a>
 		<div class="index-year-first-option" style="display: none;" onmouseover="$(this).show()" onmouseout="$(this).hide()">
-			<%= link_to t(".all_years"), "/movie/sorting/0" %><br>	
+			<%= link_to t(".all_years"), "/search/year/0" %><br>	
 			<% @years.each do |year| %>
 				<%= link_to year, "/search/year/#{year}" %><br>	
 			<% end %>
