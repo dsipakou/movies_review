@@ -7,11 +7,11 @@
 		<h2 class="h2-container h2-background" style="margin-top: 0px;">
 			<a class="index-button-show-first left" onmouseover="$(this).next().show()" onmouseout="$(this).next().hide()"> <%= @filter_title  %> ▾</a>
 			<div class="index-show-first-options" style="display: none;" onmouseover="$(this).show()" onmouseout="$(this).hide()">
-				<%= link_to t(".filter_review_first"), "/filter/1" %><br>
-				<%= link_to t(".filter_last_added"), "/filter/2" %><br>
-				<%= link_to t(".filter_last_commented"), "/filter/3" %><br>
-				<%= link_to t(".filter_most_reviews"), "/filter/4" %><br>
-				<%= link_to t(".filter_best_first"), "/filter/5" %>
+				<%= link_to t(".filter_review_first"), "/movie/sorting/1" %><br>
+				<%= link_to t(".filter_last_added"), "/movie/sorting/2" %><br>
+				<%= link_to t(".filter_last_commented"), "/movie/sorting/3" %><br>
+				<%= link_to t(".filter_most_reviews"), "/movie/sorting/4" %><br>
+				<%= link_to t(".filter_best_first"), "/movie/sorting/5" %>
 			</div>
 		</h2>
 	</div>

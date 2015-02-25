@@ -11,7 +11,7 @@
 		<div class="index-year-first-option" style="display: none;" onmouseover="$(this).show()" onmouseout="$(this).hide()">
 			<%= link_to t(".all_years"), "/filter/year/0" %><br>	
 			<% @years.each do |year| %>
-				<%= link_to year, "/filter/year/#{year}" %><br>	
+				<%= link_to year, "/search/year/#{year}" %><br>	
 			<% end %>
 		</div>
 	</div>
